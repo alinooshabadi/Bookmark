@@ -37,7 +37,7 @@ public class SplashActivity extends AppCompatActivity {
         /*
       Duration of wait
      */
-        int SPLASH_DISPLAY_LENGTH = 2500;
+        int SPLASH_DISPLAY_LENGTH = 1500;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

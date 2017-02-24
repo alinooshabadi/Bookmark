@@ -19,21 +19,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.crashlytics.android.Crashlytics;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.novler.quotes.BaseApp;
 import com.novler.quotes.R;
-import com.novler.quotes.ui.quote.PagerAdapter;
 import com.novler.quotes.models.QuoteListResponse;
 import com.novler.quotes.networking.Service;
+import com.novler.quotes.ui.quote.PagerAdapter;
 import com.novler.quotes.util.PersianTabLayout;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.fabric.sdk.android.Fabric;
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 import static com.novler.quotes.R.id.pager;
@@ -43,8 +39,6 @@ public class HomeActivity extends BaseApp implements HomeView {
     @Inject
     public Service service;
     boolean doubleBackToExitPressedOnce = false;
-
-
 
     @BindView(R.id.bottom_navigation)
     BottomNavigationView mBottomNav;
@@ -61,26 +55,10 @@ public class HomeActivity extends BaseApp implements HomeView {
     @BindView(R.id.tab_layout)
     PersianTabLayout tabLayout;
 
-    private FirebaseAnalytics mFirebaseAnalytics;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Fabric.with(this, new Crashlytics());
-
-        // Obtain the FirebaseAnalytics instance.
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        //rtl menu
-/*
-        getWindow().getDecorView().
-                setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
-*/
-
         getDeps().inject(this);
-        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/IRANSansMobile_Light.ttf")
-                .setFontAttrId(R.attr.fontPath).build());
-
 
         renderView();
         init();
@@ -91,8 +69,6 @@ public class HomeActivity extends BaseApp implements HomeView {
 
         HomePresenter presenter = new HomePresenter(service, this);
         presenter.getQuoteList();
-
-
     }
 
 
