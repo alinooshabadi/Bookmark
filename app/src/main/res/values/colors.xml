@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--material pallet-->
+    <color name="primary">#677FD1</color>
+    <color name="colorPrimary">#677FD1</color>
+    <color name="colorPrimaryDark">#5E75C3</color>
+    <color name="colorPrimaryLight">#C8E6C9</color>
+    <color name="colorAccent">#6680D4</color>
+    <color name="primary_text">#434C5B</color>
+    <color name="secondary_text">#757575</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#F8F8F8</color>
+    <color name="darkWhite">#F8F8F8</color>
+    <color name="white">#FFFFFF</color>
+    <color name="back">#ecf0f1</color>
+
+
+    <color name="linePurple">#9277FF</color>
+    <color name="lineOrange">#F4AB57</color>
+    <color name="lineRed">#F65B7C</color>
+    <color name="lineBlue">#4A90E2</color>
+
+
+</resources>
