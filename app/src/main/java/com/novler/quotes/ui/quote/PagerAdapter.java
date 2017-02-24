@@ -1,4 +1,4 @@
-package com.novler.quotes.home.QuoteTabs;
+package com.novler.quotes.ui.quote;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

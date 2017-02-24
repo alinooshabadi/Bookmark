@@ -6,7 +6,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-import com.novler.quotes.home.HomeActivity;
+import com.novler.quotes.ui.home.HomeActivity;
 import com.novler.quotes.util.FontUtil;
 
 import butterknife.BindView;

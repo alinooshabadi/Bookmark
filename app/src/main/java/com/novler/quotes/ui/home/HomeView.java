@@ -1,4 +1,4 @@
-package com.novler.quotes.home;
+package com.novler.quotes.ui.home;
 
 import com.novler.quotes.models.QuoteListResponse;
 

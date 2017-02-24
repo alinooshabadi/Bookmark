@@ -1,4 +1,4 @@
-package com.novler.quotes.home.QuoteTabs;
+package com.novler.quotes.ui.quote;
 
 
 import android.content.Intent;
@@ -13,10 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.ybq.android.spinkit.SpinKitView;
-import com.novler.quotes.NovelActivity;
+import com.novler.quotes.ui.novel.NovelActivity;
 import com.novler.quotes.R;
-import com.novler.quotes.home.HomeAdapter;
-import com.novler.quotes.home.HomeView;
+import com.novler.quotes.ui.home.HomeAdapter;
+import com.novler.quotes.ui.home.HomeView;
 import com.novler.quotes.models.QuoteListData;
 import com.novler.quotes.models.QuoteListResponse;
 import com.novler.quotes.util.ShareUtil;

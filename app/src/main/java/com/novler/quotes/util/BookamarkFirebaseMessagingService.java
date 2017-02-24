@@ -11,7 +11,7 @@ import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.novler.quotes.home.HomeActivity;
+import com.novler.quotes.ui.home.HomeActivity;
 
 /**
  * Created by P on 2/22/2017.

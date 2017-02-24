@@ -1,4 +1,4 @@
-package com.novler.quotes;
+package com.novler.quotes.ui.novel;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.novler.quotes.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -1,6 +1,6 @@
 package com.novler.quotes.deps;
 
-import com.novler.quotes.home.HomeActivity;
+import com.novler.quotes.ui.home.HomeActivity;
 import com.novler.quotes.networking.NetworkModule;
 
 import javax.inject.Singleton;

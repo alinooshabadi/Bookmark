@@ -1,4 +1,4 @@
-package com.novler.quotes.home;
+package com.novler.quotes.ui.home;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -23,7 +23,7 @@ import com.crashlytics.android.Crashlytics;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.novler.quotes.BaseApp;
 import com.novler.quotes.R;
-import com.novler.quotes.home.QuoteTabs.PagerAdapter;
+import com.novler.quotes.ui.quote.PagerAdapter;
 import com.novler.quotes.models.QuoteListResponse;
 import com.novler.quotes.networking.Service;
 import com.novler.quotes.util.PersianTabLayout;
