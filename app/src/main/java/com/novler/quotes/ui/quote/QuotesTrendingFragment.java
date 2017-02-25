@@ -10,17 +10,17 @@ import com.novler.quotes.ui.home.HomePresenter;
  * Created by P on 2/21/2017.
  */
 
-public class QuotesTrendingFragment extends BaseQuotesFragment  {
-    @Override
-    public void getItems() {
-        final HomePresenter presenter = new HomePresenter(((HomeActivity) getActivity()).service, this);
-        presenter.getQuoteTrendingList();
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
+public class QuotesTrendingFragment extends BaseQuotesFragment {
+  @Override
+  public void getItems() {
+    final HomePresenter presenter = new HomePresenter(((HomeActivity) getActivity()).service, this);
+    presenter.getQuoteTrendingList();
+    swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+      @Override
+      public void onRefresh() {
 
-                presenter.getQuoteTrendingList();
-            }
-        });
-    }
+        presenter.getQuoteTrendingList();
+      }
+    });
+  }
 }

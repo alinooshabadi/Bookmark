@@ -10,16 +10,16 @@ import com.novler.quotes.ui.home.HomePresenter;
  * Created by P on 2/21/2017.
  */
 
-public class QuotesRandomFragment extends BaseQuotesFragment{
-    @Override
-    public void getItems() {
-        final HomePresenter presenter = new HomePresenter(((HomeActivity) getActivity()).service, this);
+public class QuotesRandomFragment extends BaseQuotesFragment {
+  @Override
+  public void getItems() {
+    final HomePresenter presenter = new HomePresenter(((HomeActivity) getActivity()).service, this);
+    presenter.getQuoteRandomList();
+    swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+      @Override
+      public void onRefresh() {
         presenter.getQuoteRandomList();
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                presenter.getQuoteRandomList();
-            }
-        });
-    }
+      }
+    });
+  }
 }

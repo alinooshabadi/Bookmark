@@ -17,11 +17,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.novler.quotes.BaseApp;
 import com.novler.quotes.R;
-import com.novler.quotes.models.QuoteListResponse;
+import com.novler.quotes.models.ResponseData;
 import com.novler.quotes.networking.Service;
 import com.novler.quotes.ui.quote.PagerAdapter;
 import com.novler.quotes.util.PersianTabLayout;
@@ -35,157 +34,157 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import static com.novler.quotes.R.id.pager;
 
 
-public class HomeActivity extends BaseApp implements HomeView {
-    @Inject
-    public Service service;
-    boolean doubleBackToExitPressedOnce = false;
+public class HomeActivity extends BaseApp implements BaseView {
+  @Inject
+  public Service service;
+  boolean doubleBackToExitPressedOnce = false;
 
-    @BindView(R.id.bottom_navigation)
-    BottomNavigationView mBottomNav;
-    @BindView(R.id.snackBarParent)
-    CoordinatorLayout snackBarParent;
-    @BindView(R.id.layoutLinear)
-    RelativeLayout linearLayout;
-    @BindView(R.id.logo)
-    TextView logo;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-    @BindView(pager)
-    ViewPager viewPager;
-    @BindView(R.id.tab_layout)
-    PersianTabLayout tabLayout;
+  @BindView(R.id.bottom_navigation)
+  BottomNavigationView mBottomNav;
+  @BindView(R.id.snackBarParent)
+  CoordinatorLayout snackBarParent;
+  @BindView(R.id.layoutLinear)
+  RelativeLayout linearLayout;
+  @BindView(R.id.logo)
+  TextView logo;
+  @BindView(R.id.toolbar)
+  Toolbar toolbar;
+  @BindView(pager)
+  ViewPager viewPager;
+  @BindView(R.id.tab_layout)
+  PersianTabLayout tabLayout;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getDeps().inject(this);
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    getDeps().inject(this);
 
-        renderView();
-        init();
+    renderView();
+    init();
 
-        Typeface mTypeface = Typeface.createFromAsset(getAssets(), "fonts/AGhasem.ttf");
-        logo.setTypeface(mTypeface);
-        logo.setText("بوکمارکـ");
+    Typeface mTypeface = Typeface.createFromAsset(getAssets(), "fonts/AGhasem.ttf");
+    logo.setTypeface(mTypeface);
+    logo.setText("بوکمارکـ");
 
-        HomePresenter presenter = new HomePresenter(service, this);
-        presenter.getQuoteList();
+    HomePresenter presenter = new HomePresenter(service, this);
+    presenter.getQuoteList();
+  }
+
+
+  private void updateToolbarText(CharSequence text) {
+    ActionBar actionBar = getSupportActionBar();
+    if (actionBar != null) {
+      // actionBar.setTitle(text);
+    }
+  }
+
+  private int getColorFromRes(@ColorRes int resId) {
+    return ContextCompat.getColor(this, resId);
+  }
+
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    // Inflate the menu; this adds items to the action bar if it is present.
+    getMenuInflater().inflate(R.menu.menu_main, menu);
+    return true;
+  }
+
+  public void renderView() {
+    setContentView(R.layout.activity_main);
+    ButterKnife.bind(this);
+
+  }
+
+  public void init() {
+    LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+
+    setSupportActionBar(toolbar);
+    getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+
+    tabLayout.addTab(tabLayout.newTab().setText("داغ"));
+    tabLayout.addTab(tabLayout.newTab().setText("بهترین‌ها"));
+    tabLayout.addTab(tabLayout.newTab().setText("تصادفی"));
+    tabLayout.addTab(tabLayout.newTab().setText("جدید"));
+    tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+
+    PagerAdapter adapter = new PagerAdapter
+      (getSupportFragmentManager(), tabLayout.getTabCount());
+    viewPager.setAdapter(adapter);
+    viewPager.setCurrentItem(tabLayout.getTabCount(), false);
+    viewPager.setOffscreenPageLimit(4);
+    viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+    tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+      @Override
+      public void onTabSelected(TabLayout.Tab tab) {
+        viewPager.setCurrentItem(tab.getPosition());
+      }
+
+      @Override
+      public void onTabUnselected(TabLayout.Tab tab) {
+
+      }
+
+      @Override
+      public void onTabReselected(TabLayout.Tab tab) {
+
+      }
+    });
+
+    layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+  }
+
+  @Override
+  public void showWait() {
+
+  }
+
+  @Override
+  public void removeWait() {
+
+  }
+
+  @Override
+  public void onFailure(String appErrorMessage) {
+    Snackbar
+      .make(snackBarParent, appErrorMessage, Snackbar.LENGTH_LONG).show();
+
+  }
+
+  protected void attachBaseContext(Context newBase) {
+    super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+  }
+
+  @Override
+  public void getListSuccess(ResponseData cityListResponse) {
+
+
+  }
+
+  @Override
+  public void onBackPressed() {
+
+    if (doubleBackToExitPressedOnce) {
+      super.onBackPressed();
+      return;
     }
 
+    this.doubleBackToExitPressedOnce = true;
+    Snackbar snackbar = Snackbar
+      .make(snackBarParent, "برای خروج دوباره بازگشت را بزنید", Snackbar.LENGTH_LONG);
 
-    private void updateToolbarText(CharSequence text) {
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            // actionBar.setTitle(text);
-        }
-    }
-
-    private int getColorFromRes(@ColorRes int resId) {
-        return ContextCompat.getColor(this, resId);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    public void renderView() {
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-
-    }
-
-    public void init() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+    snackbar.show();
 
 
+    new Handler().postDelayed(new Runnable() {
 
-
-        tabLayout.addTab(tabLayout.newTab().setText("داغ"));
-        tabLayout.addTab(tabLayout.newTab().setText("بهترین‌ها"));
-        tabLayout.addTab(tabLayout.newTab().setText("تصادفی"));
-        tabLayout.addTab(tabLayout.newTab().setText("جدید"));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
-
-        PagerAdapter adapter = new PagerAdapter
-                (getSupportFragmentManager(), tabLayout.getTabCount());
-        viewPager.setAdapter(adapter);
-        viewPager.setCurrentItem(tabLayout.getTabCount(), false);
-        viewPager.setOffscreenPageLimit(4);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-    }
-
-    @Override
-    public void showWait() {
-
-    }
-
-    @Override
-    public void removeWait() {
-
-    }
-
-    @Override
-    public void onFailure(String appErrorMessage) {
-        Toast.makeText(getApplicationContext(), appErrorMessage, Toast.LENGTH_LONG).show();
-    }
-
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
-    }
-
-    @Override
-    public void getListSuccess(QuoteListResponse cityListResponse) {
-
-
-    }
-
-    @Override
-    public void onBackPressed() {
-
-        if (doubleBackToExitPressedOnce) {
-            super.onBackPressed();
-            return;
-        }
-
-        this.doubleBackToExitPressedOnce = true;
-        Snackbar snackbar = Snackbar
-                .make(snackBarParent, "برای خروج دوباره بازگشت را بزنید", Snackbar.LENGTH_LONG);
-
-        snackbar.show();
-
-
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce = false;
-            }
-        }, 2000);
-    }
+      @Override
+      public void run() {
+        doubleBackToExitPressedOnce = false;
+      }
+    }, 2000);
+  }
 
 
 }

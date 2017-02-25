@@ -12,12 +12,12 @@ import com.novler.quotes.R;
  */
 
 public class Util {
-    public static void applyFontedTab(Activity activity, ViewPager viewPager, TabLayout tabLayout) {
-        for (int i = 0; i < viewPager.getAdapter().getCount(); i++) {
-            TextView tv = (TextView) activity.getLayoutInflater().inflate(R.layout.activity_main, null);
-            if (i == viewPager.getCurrentItem()) tv.setSelected(true);
-            tv.setText(viewPager.getAdapter().getPageTitle(i));
-            tabLayout.getTabAt(i).setCustomView(tv);
-        }
+  public static void applyFontedTab(Activity activity, ViewPager viewPager, TabLayout tabLayout) {
+    for (int i = 0; i < viewPager.getAdapter().getCount(); i++) {
+      TextView tv = (TextView) activity.getLayoutInflater().inflate(R.layout.activity_main, null);
+      if (i == viewPager.getCurrentItem()) tv.setSelected(true);
+      tv.setText(viewPager.getAdapter().getPageTitle(i));
+      tabLayout.getTabAt(i).setCustomView(tv);
     }
+  }
 }

@@ -1,115 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/parentLayout"
+<LinearLayout android:id="@+id/parentLayout"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:card_view="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:background="@color/white"
+  android:orientation="vertical">
+
+  <TextView
+    android:id="@+id/text"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:orientation="vertical">
+    android:layout_below="@+id/user"
+    android:lineSpacingExtra="12sp"
+    android:paddingBottom="10dp"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    android:paddingTop="20dp"
+    android:text="\پراید سفید گل‌کاری شده بوق بوق‌کنان از جلو مغازه رد می‌شود. از عروس فقط لباس سفیدش را می‌بینم. حتما شبیه همه‌ی عروس‌های دیگری است که تا‌به‌حال دیده‌ام: زشت و تکراری. حتا می‌توانم آهنگ‌هایی را که برای رقص چاقوی امشب انتخاب می‌کنند حدس بزنم. بعد از نیم قرن، هنوز باباکرم با یک سروگردن اختلاف از بقیه‌ی آهنگ‌های‌شان بهتر است. یک مراسم تکراری و کسل‌کننده که با قایون دست، خانوما رقص، حالا برعکسشروع می‌شود و با آقایون، خانوما، بفرمایید شام تمام می‌شود\"
+    android:textColor="#171818"
+    android:textSize="12sp" />
 
-    <TextView
-        android:id="@+id/text"
+
+  <LinearLayout
+    android:id="@+id/titleCoverContainer"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp">
+
+    <com.novler.quotes.util.RoundedImageView
+      android:id="@+id/image"
+      android:layout_width="50dp"
+      android:layout_height="81dp"
+      android:contentDescription="@null"
+      android:src="@drawable/novel_placeholder"
+      android:transitionName="novel_cover"
+      card_view:radius="20.0" />
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:textAlignment="viewEnd">
+
+      <TextView
+        android:id="@+id/novel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/user"
-        android:lineSpacingExtra="12sp"
-        android:paddingRight="30dp"
-        android:paddingLeft="30dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="10dp"
-        android:text="\پراید سفید گل‌کاری شده بوق بوق‌کنان از جلو مغازه رد می‌شود. از عروس فقط لباس سفیدش را می‌بینم. حتما شبیه همه‌ی عروس‌های دیگری است که تا‌به‌حال دیده‌ام: زشت و تکراری. حتا می‌توانم آهنگ‌هایی را که برای رقص چاقوی امشب انتخاب می‌کنند حدس بزنم. بعد از نیم قرن، هنوز باباکرم با یک سروگردن اختلاف از بقیه‌ی آهنگ‌های‌شان بهتر است. یک مراسم تکراری و کسل‌کننده که با قایون دست، خانوما رقص، حالا برعکسشروع می‌شود و با آقایون، خانوما، بفرمایید شام تمام می‌شود\"
-        android:textColor="#171818"
+        android:layout_marginTop="2dp"
+        android:text="مورچه در ماه"
+        android:textColor="@color/secondary_text"
         android:textSize="12sp" />
 
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp">
-
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="50dp"
-            android:layout_height="81dp"
-            android:contentDescription="@null"
-            android:src="@drawable/novel_placeholder"
-            android:transitionName="novel_cover" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:textAlignment="viewEnd">
-
-            <TextView
-                android:id="@+id/novel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="مورچه در ماه"
-                android:textColor="@color/secondary_text"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/author"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/novel"
-                android:text="لادن نیکنام"
-                android:textColor="@color/secondary_text"
-                android:textSize="11sp"
-                android:textStyle="bold|italic" />
-
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-    <LinearLayout
+      <TextView
+        android:id="@+id/author"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom"
-        android:orientation="horizontal"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="10dp"
-        android:textColor="@color/primary_text">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/shareTelegram"
-            android:src="@drawable/ic_action_share"
-
-            >
-
-        </ImageView>
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:background="@color/darkWhite"
-            android:text="1394/4/4"
-            android:textAlignment="viewStart"
-            android:textColor="@color/secondary_text"
-            android:textSize="11sp" />
-
-        <TextView
-            android:id="@+id/user"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="انتخاب"
-            android:textColor="@color/secondary_text"
-            android:textSize="11sp"
-            android:textStyle="normal|bold" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/novel"
+        android:text="لادن نیکنام"
+        android:textColor="@color/secondary_text"
+        android:textSize="11sp"
+        android:textStyle="bold|italic" />
 
 
     </LinearLayout>
 
-    <include layout="@layout/divider" />
+
+  </LinearLayout>
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    android:orientation="horizontal"
+    android:paddingBottom="10dp"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    android:paddingTop="5dp"
+    android:textColor="@color/primary_text">
+
+
+
+    <TextView
+      android:id="@+id/dateShamsi"
+      android:layout_width="80dp"
+      android:layout_height="wrap_content"
+      android:text="1394/4/4"
+      android:textAlignment="viewStart"
+      android:textColor="@color/secondary_text"
+      android:textSize="11sp" />
+
+    <TextView
+      android:id="@+id/user"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:text="انتخاب"
+      android:textColor="@color/secondary_text"
+      android:textSize="11sp"
+      android:textStyle="normal|bold" />
+
+    <ImageView
+      android:id="@+id/shareTelegram"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:layout_gravity="end"
+      android:src="@drawable/ic_telegram_grey"
+
+      >
+
+    </ImageView>
+  </LinearLayout>
+
+  <include layout="@layout/divider" />
 </LinearLayout>

@@ -11,17 +11,17 @@ import com.novler.quotes.ui.home.HomePresenter;
  */
 
 public class QuotesNewFragment extends BaseQuotesFragment {
-    @Override
-    public void getItems() {
-        final HomePresenter presenter = new HomePresenter(((HomeActivity) getActivity()).service, this);
-        presenter.getQuoteList();
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
+  @Override
+  public void getItems() {
+    final HomePresenter presenter = new HomePresenter(((HomeActivity) getActivity()).service, this);
+    presenter.getQuoteList();
+    swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+      @Override
+      public void onRefresh() {
 
-                presenter.getQuoteList();
-            }
-        });
-    }
+        presenter.getQuoteList();
+      }
+    });
+  }
 
 }

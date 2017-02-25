@@ -6,16 +6,16 @@ import com.novler.quotes.ui.home.HomeActivity;
 import com.novler.quotes.ui.home.HomePresenter;
 
 public class QuotesBestFragment extends BaseQuotesFragment {
-    @Override
-    public void getItems() {
-        final HomePresenter presenter = new HomePresenter(((HomeActivity) getActivity()).service, this);
-        presenter.getQuoteBestList();
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
+  @Override
+  public void getItems() {
+    final HomePresenter presenter = new HomePresenter(((HomeActivity) getActivity()).service, this);
+    presenter.getQuoteBestList();
+    swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+      @Override
+      public void onRefresh() {
 
-                presenter.getQuoteBestList();
-            }
-        });
-    }
+        presenter.getQuoteBestList();
+      }
+    });
+  }
 }

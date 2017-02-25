@@ -1,6 +1,5 @@
 package com.novler.quotes.ui.quote;
 
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,90 +14,86 @@ import android.view.ViewGroup;
 
 import com.novler.quotes.R;
 import com.novler.quotes.models.QuoteListData;
-import com.novler.quotes.models.QuoteListResponse;
+import com.novler.quotes.models.ResponseData;
+import com.novler.quotes.ui.home.BaseView;
 import com.novler.quotes.ui.home.HomeAdapter;
-import com.novler.quotes.ui.home.HomeView;
 import com.novler.quotes.ui.novel.NovelActivity;
 import com.novler.quotes.util.ShareUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by P on 2/21/2017.
- */
+public class BaseQuotesFragment extends Fragment implements BaseView {
 
-public class BaseQuotesFragment extends Fragment implements HomeView {
+  @BindView(R.id.list)
+  RecyclerView list;
+  @BindView(R.id.swipeRefreshLayout)
+  SwipeRefreshLayout swipeRefreshLayout;
 
-    @BindView(R.id.list)
-    RecyclerView list;
-    @BindView(R.id.swipeRefreshLayout)
-    SwipeRefreshLayout swipeRefreshLayout;
+  SharedPreferences sharedpreferences;
 
-    SharedPreferences sharedpreferences;
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    View view = inflater.inflate(R.layout.fragment_quotes_list, container, false);
+    ButterKnife.bind(this, view);
 
-        View view = inflater.inflate(R.layout.fragment_quotes_list, container, false);
-        ButterKnife.bind(this, view);
+    LinearLayoutManager mLayoutManager = new LinearLayoutManager(this.getActivity());
+    list.setLayoutManager(mLayoutManager);
 
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this.getActivity());
-        list.setLayoutManager(mLayoutManager);
+    getItems();
 
-        getItems();
-
-        swipeRefreshLayout.setColorSchemeResources(R.color.lineRed,
-                R.color.lineBlue,
-                R.color.lineOrange,
-                R.color.linePurple);
+    swipeRefreshLayout.setColorSchemeResources(R.color.lineRed,
+      R.color.lineBlue,
+      R.color.lineOrange,
+      R.color.linePurple);
 
 
-        return view;
-    }
+    return view;
+  }
 
-    public void getItems() {
+  public void getItems() {
 
-    }
+  }
 
-    @Override
-    public void showWait() {
-        swipeRefreshLayout.setRefreshing(true);
-    }
+  @Override
+  public void showWait() {
+    swipeRefreshLayout.setRefreshing(true);
+  }
 
-    @Override
-    public void removeWait() {
-        swipeRefreshLayout.setRefreshing(false);
-    }
+  @Override
+  public void removeWait() {
+    swipeRefreshLayout.setRefreshing(false);
+  }
 
-    @Override
-    public void onFailure(String appErrorMessage) {
+  @Override
+  public void onFailure(String appErrorMessage) {
 
-    }
+  }
 
-    @Override
-    public void getListSuccess(QuoteListResponse listResponse) {
-        HomeAdapter adapter = new HomeAdapter(getActivity().getApplicationContext(), listResponse.getData(),
-                new HomeAdapter.OnItemClickListener() {
-                    @Override
-                    public void onClick(QuoteListData Item, View view) {
-                        if (view.getId() == R.id.shareTelegram) {
-                            ShareUtil.intentMessageTelegram(getActivity(), Item.getText());
-                        }
-                        else {
-                            Intent intent = new Intent(getActivity(), NovelActivity.class);
-                            ActivityOptionsCompat options = ActivityOptionsCompat.
-                                    makeSceneTransitionAnimation(getActivity(), view, "novel_cover");
+  @Override
+  public void getListSuccess(ResponseData listResponse) {
+    HomeAdapter adapter = new HomeAdapter(getActivity(), getActivity().getApplicationContext(), listResponse.getQuotes(),
+      new HomeAdapter.OnItemClickListener() {
+        @Override
+        public void onClick(QuoteListData Item, View view) {
+          if (view.getId() == R.id.shareTelegram) {
+            ShareUtil.intentMessageTelegram(getActivity(), Item.getText());
+          } else {
+            Intent intent = new Intent(getActivity(), NovelActivity.class);
+            ActivityOptionsCompat options = ActivityOptionsCompat.
+              makeSceneTransitionAnimation(getActivity(), view, "novel_cover");
 
-                            Bundle bundle = new Bundle();
-                            bundle.putString("cover", Item.getNovelmage());
-                            bundle.putString("title", Item.getNovel());
-                            intent.putExtras(bundle);
-                            startActivity(intent, options.toBundle());
-                        }
-                    }
-                });
+            Bundle bundle = new Bundle();
+            bundle.putString("cover", Item.getNovelImage());
+            bundle.putString("title", Item.getNovel());
+            bundle.putInt("novelId", Item.getNovelId());
+            intent.putExtras(bundle);
+            startActivity(intent, options.toBundle());
+          }
+        }
+      });
 
-        list.setAdapter(adapter);
-    }
+    list.setAdapter(adapter);
+  }
 }

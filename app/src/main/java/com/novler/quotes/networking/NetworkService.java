@@ -1,8 +1,9 @@
 package com.novler.quotes.networking;
 
-import com.novler.quotes.models.QuoteListResponse;
+import com.novler.quotes.models.ResponseData;
 
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import rx.Observable;
 
 /**
@@ -10,15 +11,18 @@ import rx.Observable;
  */
 
 public interface NetworkService {
-    @GET("quotes")
-    Observable<QuoteListResponse> getQuoteList();
+  @GET("quotes")
+  Observable<ResponseData> getQuoteList();
 
-    @GET("quotes/getbest")
-    Observable<QuoteListResponse> getQuoteBestList();
+  @GET("quotes/getbest")
+  Observable<ResponseData> getQuoteBestList();
 
-    @GET("quotes/getrandom")
-    Observable<QuoteListResponse> getQuoteRandomList();
+  @GET("quotes/getrandom")
+  Observable<ResponseData> getQuoteRandomList();
 
-    @GET("quotes/gettrending")
-    Observable<QuoteListResponse> getQuoteTrendingList();
+  @GET("quotes/gettrending")
+  Observable<ResponseData> getQuoteTrendingList();
+
+  @GET("novels/getnovel/{id}")
+  Observable<ResponseData> getNovel(@Path("id") int id);
 }

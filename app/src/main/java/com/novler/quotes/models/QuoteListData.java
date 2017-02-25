@@ -1,7 +1,6 @@
 package com.novler.quotes.models;
 
 import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 
 import javax.annotation.Generated;
 
@@ -11,117 +10,173 @@ import javax.annotation.Generated;
 
 @Generated("org.jsonschema2pojo")
 public class QuoteListData {
-    @SerializedName("Id")
-    @Expose
-    private String id;
-    @SerializedName("User")
-    @Expose
-    private String user;
-    @SerializedName("Text")
-    @Expose
-    private String text;
-    @SerializedName("Novel")
-    @Expose
-    private String novel;
-    @SerializedName("Author")
-    @Expose
-    private String author;
 
-    public String getNovelmage() {
-        return novelmage;
-    }
+  @Expose
+  private String id;
 
-    public void setNovelmage(String novelmage) {
-        this.novelmage = novelmage;
-    }
+  @Expose
+  private String quoteNovlerId;
 
-    @SerializedName("Novelmage")
-    @Expose
-    private String novelmage;
+  @Expose
+  private String user;
 
-    public String getDate() {
-        return date;
-    }
+  @Expose
+  private String text;
 
-    public void setDate(String date) {
-        this.date = date;
-    }
+  @Expose
+  private String novel;
 
-    @SerializedName("DateShamsi")
-    @Expose
-    private String date;
+  @Expose
+  private int novelId;
 
-    public String getNovel() {
-        return novel;
-    }
+  @Expose
+  private String novelNovlerId;
 
-    public void setNovel(String novel) {
-        this.novel = novel;
-    }
+  @Expose
+  private String author;
 
-    public String getAuthor() {
-        return author;
-    }
+  @Expose
+  private String novelImage;
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
+  @Expose
+  private String dateShamsi;
+
+  @Expose
+  private String translator;
+
+  @Expose
+  private String authorNovlerId;
+
+  @Expose
+  private int authorId;
+
+  @Expose
+  private int page;
+
+  @Expose
+  private int likes;
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public String getQuoteNovlerId() {
+    return quoteNovlerId;
+  }
+
+  public void setQuoteNovlerId(String quoteNovlerId) {
+    this.quoteNovlerId = quoteNovlerId;
+  }
+
+  public String getUser() {
+    return user;
+  }
+
+  public void setUser(String user) {
+    this.user = user;
+  }
+
+  public String getText() {
+    return text;
+  }
+
+  public void setText(String text) {
+    this.text = text;
+  }
+
+  public String getNovel() {
+    return novel;
+  }
+
+  public void setNovel(String novel) {
+    this.novel = novel;
+  }
+
+  public int getNovelId() {
+    return novelId;
+  }
+
+  public void setNovelId(int novelId) {
+    this.novelId = novelId;
+  }
+
+  public String getNovelNovlerId() {
+    return novelNovlerId;
+  }
+
+  public void setNovelNovlerId(String novelNovlerId) {
+    this.novelNovlerId = novelNovlerId;
+  }
+
+  public String getAuthor() {
+    return author;
+  }
+
+  public void setAuthor(String author) {
+    this.author = author;
+  }
+
+  public String getNovelImage() {
+    return novelImage;
+  }
+
+  public void setNovelImage(String novelImage) {
+    this.novelImage = novelImage;
+  }
+
+  public String getDateShamsi() {
+    return dateShamsi;
+  }
+
+  public void setDateShamsi(String dateShamsi) {
+    this.dateShamsi = dateShamsi;
+  }
+
+  public String getTranslator() {
+    return translator;
+  }
+
+  public void setTranslator(String translator) {
+    this.translator = translator;
+  }
+
+  public String getAuthorNovlerId() {
+    return authorNovlerId;
+  }
+
+  public void setAuthorNovlerId(String authorNovlerId) {
+    this.authorNovlerId = authorNovlerId;
+  }
+
+  public int getAuthorId() {
+    return authorId;
+  }
+
+  public void setAuthorId(int authorId) {
+    this.authorId = authorId;
+  }
+
+  public int getPage() {
+    return page;
+  }
+
+  public void setPage(int page) {
+    this.page = page;
+  }
+
+  public int getLikes() {
+    return likes;
+  }
+
+  public void setLikes(int likes) {
+    this.likes = likes;
+  }
 
 
-
-    /**
-     *
-     * @return
-     * The id
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     *
-     * @param id
-     * The id
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    /**
-     *
-     * @return
-     * The name
-     */
-    public String getUser() {
-        return user;
-    }
-
-    /**
-     *
-     * @param name
-     * The name
-     */
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    /**
-     *
-     * @return
-     * The description
-     */
-    public String getText() {
-        return text;
-    }
-
-    /**
-     *
-     * @param description
-     * The description
-     */
-    public void setText(String text) {
-        this.text = text;
-    }
 
 
 }

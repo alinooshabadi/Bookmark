@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" >
-    <item
-        android:id="@+id/action_authors"
-        android:enabled="true"
-        android:icon="@drawable/ic_author"
-        android:title="@string/text_authors"
-        app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_novels"
-        android:enabled="true"
-        android:icon="@drawable/ic_novel"
-        android:title="@string/text_novels"
-        app:showAsAction="ifRoom" />
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+  <item
+    android:id="@+id/action_authors"
+    android:enabled="true"
+    android:icon="@drawable/ic_author"
+    android:title="@string/text_authors"
+    app:showAsAction="ifRoom" />
+  <item
+    android:id="@+id/action_novels"
+    android:enabled="true"
+    android:icon="@drawable/ic_novel"
+    android:title="@string/text_novels"
+    app:showAsAction="ifRoom" />
 
-    <item
-        android:id="@+id/action_quotes"
-        android:enabled="true"
-        android:icon="@drawable/ic_quote"
-        android:title="@string/text_quotes"
-        app:showAsAction="ifRoom" />
+  <item
+    android:id="@+id/action_quotes"
+    android:enabled="true"
+    android:icon="@drawable/ic_quote"
+    android:title="@string/text_quotes"
+    app:showAsAction="ifRoom" />
 </menu>
