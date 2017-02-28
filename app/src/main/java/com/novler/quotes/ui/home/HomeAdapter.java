@@ -19,6 +19,7 @@ import com.novler.quotes.R;
 import com.novler.quotes.models.QuoteListData;
 import com.novler.quotes.ui.novel.NovelActivity;
 import com.novler.quotes.util.RoundedImageView;
+import com.novler.quotes.util.Util;
 
 import java.util.List;
 
@@ -85,7 +86,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
       holder.parentLayout.setBackground(context.getResources().getDrawable(R.drawable.border_orange));
 
     holder.tvText.setText(Html.fromHtml(
-      data.get(position).getText().replace("&171;", "«").replace("&187;", "»")
+      Util.clearText( data.get(position).getText())
     ));
 
 

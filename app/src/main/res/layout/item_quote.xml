@@ -52,7 +52,8 @@
         android:layout_marginTop="2dp"
         android:text="مورچه در ماه"
         android:textColor="@color/secondary_text"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:transitionName="novel_title" />
 
       <TextView
         android:id="@+id/author"
@@ -62,7 +63,8 @@
         android:text="لادن نیکنام"
         android:textColor="@color/secondary_text"
         android:textSize="11sp"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold|italic"
+        android:transitionName="novel_author" />
 
 
     </LinearLayout>
@@ -72,30 +74,33 @@
 
   <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="30dp"
+    android:layout_marginRight="30dp"
     android:gravity="bottom"
     android:orientation="horizontal"
     android:paddingBottom="10dp"
-    android:paddingLeft="30dp"
-    android:paddingRight="30dp"
     android:paddingTop="5dp"
-    android:textColor="@color/primary_text">
-
-
+    android:textColor="@color/primary_text"
+    android:weightSum="10"
+    android:baselineAligned="false">
 
     <TextView
       android:id="@+id/dateShamsi"
-      android:layout_width="80dp"
+      android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      android:text="1394/4/4"
-      android:textAlignment="viewStart"
+      android:layout_weight="5"
+      android:text="ریزوز"
+      android:gravity="left"
       android:textColor="@color/secondary_text"
-      android:textSize="11sp" />
+      android:textSize="11sp"
+    />
 
     <TextView
       android:id="@+id/user"
-      android:layout_width="match_parent"
+      android:layout_width="fill_parent"
       android:layout_height="match_parent"
+      android:layout_weight="5"
       android:text="انتخاب"
       android:textColor="@color/secondary_text"
       android:textSize="11sp"
@@ -103,12 +108,13 @@
 
     <ImageView
       android:id="@+id/shareTelegram"
-      android:layout_width="wrap_content"
+      android:layout_width="20dp"
       android:layout_height="match_parent"
       android:layout_gravity="end"
-      android:src="@drawable/ic_telegram_grey"
-
-      >
+      android:baselineAlignBottom="false"
+      android:contentDescription="@null"
+      android:paddingLeft="5dp"
+      android:src="@drawable/ic_telegram_grey">
 
     </ImageView>
   </LinearLayout>

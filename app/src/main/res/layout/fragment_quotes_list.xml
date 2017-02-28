@@ -1,13 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout android:id="@+id/swipeRefreshLayout"
+<com.novler.quotes.util.customLayout.EmptySwipeRefreshLayout android:id="@+id/swipeRefreshLayout"
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:orientation="vertical">
+  android:layout_height="match_parent">
 
-  <android.support.v7.widget.RecyclerView
-    android:id="@+id/list"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" />
+  <FrameLayout
 
-</android.support.v4.widget.SwipeRefreshLayout>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+      android:id="@+id/list"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:divider="@null" />
+
+
+    <LinearLayout
+      android:id="@+id/reload"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_gravity="center_horizontal"
+      android:gravity="center"
+      android:textAlignment="center"
+      android:orientation="vertical"
+      >
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="دوباره تلاش کنید"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/colorPrimary"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textStyle="normal|bold" />
+
+      <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_disconnected" />
+    </LinearLayout>
+
+  </FrameLayout>
+
+</com.novler.quotes.util.customLayout.EmptySwipeRefreshLayout>

@@ -1,6 +1,5 @@
 package com.novler.quotes.ui.home;
 
-import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,23 +17,25 @@ import android.view.Menu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.github.javiersantos.appupdater.AppUpdater;
+import com.github.javiersantos.appupdater.enums.UpdateFrom;
 import com.novler.quotes.BaseApp;
 import com.novler.quotes.R;
 import com.novler.quotes.models.ResponseData;
 import com.novler.quotes.networking.Service;
+import com.novler.quotes.presenter.HomePresenter;
 import com.novler.quotes.ui.quote.PagerAdapter;
-import com.novler.quotes.util.PersianTabLayout;
+import com.novler.quotes.util.customLayout.PersianTabLayout;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 import static com.novler.quotes.R.id.pager;
 
 
-public class HomeActivity extends BaseApp implements BaseView {
+public class HomeActivity extends BaseApp implements BaseView{
   @Inject
   public Service service;
   boolean doubleBackToExitPressedOnce = false;
@@ -68,6 +69,20 @@ public class HomeActivity extends BaseApp implements BaseView {
 
     HomePresenter presenter = new HomePresenter(service, this);
     presenter.getQuoteList();
+
+    AppUpdater appUpdater = new AppUpdater(this)
+      .setUpdateFrom(UpdateFrom.JSON)
+      .setUpdateJSON("https://novler.com/bookmark-changelog.json")
+      .setTitleOnUpdateAvailable("Update available")
+      .setContentOnUpdateAvailable("Check out the latest version available of my app!")
+      .setTitleOnUpdateNotAvailable("Update not available")
+      .setContentOnUpdateNotAvailable("No update available. Check for updates again later!")
+      .setButtonUpdate("Update now?")
+      .setButtonDismiss("Maybe later")
+      .setButtonDoNotShowAgain("Huh, not interested");
+
+    appUpdater.start();
+
   }
 
 
@@ -136,33 +151,6 @@ public class HomeActivity extends BaseApp implements BaseView {
   }
 
   @Override
-  public void showWait() {
-
-  }
-
-  @Override
-  public void removeWait() {
-
-  }
-
-  @Override
-  public void onFailure(String appErrorMessage) {
-    Snackbar
-      .make(snackBarParent, appErrorMessage, Snackbar.LENGTH_LONG).show();
-
-  }
-
-  protected void attachBaseContext(Context newBase) {
-    super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
-  }
-
-  @Override
-  public void getListSuccess(ResponseData cityListResponse) {
-
-
-  }
-
-  @Override
   public void onBackPressed() {
 
     if (doubleBackToExitPressedOnce) {
@@ -187,4 +175,19 @@ public class HomeActivity extends BaseApp implements BaseView {
   }
 
 
+  @Override public void showWait() {
+
+  }
+
+  @Override public void removeWait() {
+
+  }
+
+  @Override public void onFailure(String appErrorMessage) {
+
+  }
+
+  @Override public void getListSuccess(ResponseData cityListResponse) {
+
+  }
 }

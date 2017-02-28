@@ -1,4 +1,4 @@
-package com.novler.quotes.util;
+package com.novler.quotes.util.customLayout;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -7,6 +7,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.novler.quotes.util.FontUtil;
 
 public class PersianTabLayout extends TabLayout {
 

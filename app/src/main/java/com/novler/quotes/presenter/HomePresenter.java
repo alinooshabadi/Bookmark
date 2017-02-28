@@ -1,15 +1,12 @@
-package com.novler.quotes.ui.home;
+package com.novler.quotes.presenter;
 
 import com.novler.quotes.models.ResponseData;
 import com.novler.quotes.networking.NetworkError;
 import com.novler.quotes.networking.Service;
+import com.novler.quotes.ui.home.BaseView;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
-
-/**
- * Created by P on 2/14/2017.
- */
 
 public class HomePresenter {
 

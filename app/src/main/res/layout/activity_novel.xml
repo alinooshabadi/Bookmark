@@ -1,43 +1,115 @@
-<?xml version="1.0" encoding="utf-8"?>
-
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:fitsSystemWindows="true"
-  tools:context="com.novler.quotes.ui.novel.NovelActivity">
-
-
-  <android.support.v7.widget.RecyclerView
-    android:id="@+id/list"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:scrollbars="vertical"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-  </android.support.v7.widget.RecyclerView>
+  tools:context=".ui.novel.NovelActivity">
 
   <android.support.design.widget.AppBarLayout
-    android:id="@+id/my_appbar_container"
+    android:id="@+id/appBarLayout"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:background="@color/linePurple"
+    android:layout_height="wrap_content"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-
-    <android.support.v7.widget.Toolbar
-
-      android:id="@+id/toolbar"
+    <android.support.design.widget.CollapsingToolbarLayout
+      android:id="@+id/collapsingToolbarLayout"
       android:layout_width="match_parent"
-      android:layout_height="?attr/actionBarSize"
-      android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-      app:layout_collapseMode="pin"
-      app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+      android:layout_height="match_parent"
+      android:background="@color/asphalt"
+      app:expandedTitleMarginEnd="64dp"
+      app:expandedTitleMarginStart="48dp"
+      app:expandedTitleTextAppearance="@style/ToolbarTitleTextAppearance"
+      app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:orientation="horizontal"
+        android:paddingTop="15dp"
+        android:weightSum="1">
 
 
-    </android.support.v7.widget.Toolbar>
+        <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_margin="15dp"
+          android:layout_weight="0.90"
+          android:orientation="vertical">
+
+          <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="تنهاترین سرداد"
+            android:textSize="16sp"
+            android:transitionName="novel_title" />
+
+          <TextView
+            android:id="@+id/originalTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Into The Blue"
+            android:textSize="13sp"
+            android:visibility="gone" />
+
+          <RatingBar
+            android:id="@+id/ratingBar"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:rating="4.5"
+            android:stepSize="0.5"
+            android:theme="@style/RatingBar" />
+
+          <TextView
+            android:id="@+id/author"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:transitionName="novel_author" />
+
+          <TextView
+            android:id="@+id/translator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <com.novler.quotes.util.RoundedImageView
+          android:id="@+id/image"
+          android:layout_width="80dp"
+          android:layout_height="130dp"
+          android:layout_gravity="end"
+          android:layout_margin="15dp"
+          android:src="@drawable/novel_placeholder"
+          android:transitionName="novel_cover"
+          app:radius="30.0" />
+      </LinearLayout>
+
+      <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_collapseMode="pin"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <TextView
+          android:id="@+id/titleBar"
+          android:textColor="@color/white"
+          android:layout_gravity="start"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:paddingEnd="20dp"
+          android:paddingTop="15dp"
+          android:textSize="16sp"/>
+      </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.CollapsingToolbarLayout>
+
   </android.support.design.widget.AppBarLayout>
 
   <android.support.design.widget.FloatingActionButton
@@ -47,31 +119,14 @@
     android:layout_margin="16dp"
     android:src="@drawable/ic_action_share"
     app:borderWidth="0dp"
-    app:layout_anchor="@id/my_appbar_container"
-    app:layout_anchorGravity="bottom|right|end" />
+    app:layout_anchor="@id/appBarLayout"
+    app:layout_anchorGravity="bottom|left|end" />
 
-  <TextView
-    android:id="@+id/toolbarTitle"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="end"
-    android:paddingEnd="40dp"
-    android:text="مترجم دردها"
-    android:textColor="@color/white"
-    android:textSize="18sp" />
-
-  <com.novler.quotes.util.RoundedImageView
-    android:id="@+id/image"
-    android:layout_width="80dp"
-    android:layout_height="wrap_content"
-    android:layout_margin="20dp"
-    android:contentDescription="@null"
-    android:cropToPadding="false"
-    android:foregroundGravity="bottom"
-    android:src="@drawable/novel_placeholder"
-    android:transitionName="novel_cover"
-    app:layout_anchor="@id/my_appbar_container"
-    app:layout_anchorGravity="bottom|left|end"
-    app:radius="50.0" />
+  <android.support.v7.widget.RecyclerView
+    android:id="@+id/list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </android.support.design.widget.CoordinatorLayout>

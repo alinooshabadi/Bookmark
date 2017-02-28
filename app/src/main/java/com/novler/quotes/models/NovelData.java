@@ -1,6 +1,8 @@
 package com.novler.quotes.models;
 
 
+import android.support.annotation.Nullable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -23,13 +25,13 @@ public class NovelData {
   private String author;
   @SerializedName("authorId")
   @Expose
-  private Integer authorId;
+  private @Nullable Integer authorId;
   @SerializedName("translator")
   @Expose
-  private String translator;
+  private @Nullable String translator;
   @SerializedName("publisher")
   @Expose
-  private String publisher;
+  private @Nullable String publisher;
   @SerializedName("cover")
   @Expose
   private String cover;

@@ -26,7 +26,7 @@
       android:textSize="25sp" />
   </android.support.v7.widget.Toolbar>
 
-  <com.novler.quotes.util.PersianTabLayout
+  <com.novler.quotes.util.customLayout.PersianTabLayout
     android:id="@+id/tab_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

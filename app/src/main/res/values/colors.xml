@@ -15,12 +15,18 @@
 
   <color name="white">#FFFFFF</color>
   <color name="back">#ecf0f1</color>
-  <color name="red_transparent">#66FF0000</color>
+  <color name="asphalt">#263238</color>
+
+
 
   <color name="linePurple">#9277FF</color>
   <color name="lineOrange">#F4AB57</color>
   <color name="lineRed">#F65B7C</color>
   <color name="lineBlue">#4A90E2</color>
+
+
+
+
 
 
 </resources>

@@ -5,12 +5,14 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.util.Pair;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.novler.quotes.R;
 import com.novler.quotes.models.QuoteListData;
@@ -19,18 +21,29 @@ import com.novler.quotes.ui.home.BaseView;
 import com.novler.quotes.ui.home.HomeAdapter;
 import com.novler.quotes.ui.novel.NovelActivity;
 import com.novler.quotes.util.ShareUtil;
+import com.novler.quotes.util.Util;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class BaseQuotesFragment extends Fragment implements BaseView {
 
+  @BindView(R.id.reload)
+  LinearLayout reload;
   @BindView(R.id.list)
   RecyclerView list;
   @BindView(R.id.swipeRefreshLayout)
   SwipeRefreshLayout swipeRefreshLayout;
 
   SharedPreferences sharedpreferences;
+
+  @OnClick(R.id.reload)
+  public void reloadList() {
+    getItems();
+  }
+
+
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -59,16 +72,19 @@ public class BaseQuotesFragment extends Fragment implements BaseView {
   @Override
   public void showWait() {
     swipeRefreshLayout.setRefreshing(true);
+    reload.setVisibility(View.GONE);
   }
 
   @Override
   public void removeWait() {
     swipeRefreshLayout.setRefreshing(false);
+    reload.setVisibility(View.GONE);
   }
 
   @Override
   public void onFailure(String appErrorMessage) {
-
+    reload.setVisibility(View.VISIBLE);
+    //Snackbar.make(list, appErrorMessage, Snackbar.LENGTH_INDEFINITE).show();
   }
 
   @Override
@@ -78,15 +94,28 @@ public class BaseQuotesFragment extends Fragment implements BaseView {
         @Override
         public void onClick(QuoteListData Item, View view) {
           if (view.getId() == R.id.shareTelegram) {
-            ShareUtil.intentMessageTelegram(getActivity(), Item.getText());
+            String telegramText = Util.clearText(Item.getText()
+              + "\r\n" + "\r\n" +
+              Item.getNovel()
+              + "\r\n"
+              + Item.getAuthor()
+              + "\r\n"
+              +"@novler"
+            );
+
+            ShareUtil.intentMessageTelegram(getActivity(), telegramText);
           } else {
             Intent intent = new Intent(getActivity(), NovelActivity.class);
+            Pair<View, String> pair1 = Pair.create(view, "novel_title");
+            Pair<View, String> pair2 = Pair.create(view, "novel_author");
+            Pair<View, String> pair3 = Pair.create(view, "novel_cover");
             ActivityOptionsCompat options = ActivityOptionsCompat.
-              makeSceneTransitionAnimation(getActivity(), view, "novel_cover");
+              makeSceneTransitionAnimation(getActivity(), pair1, pair2, pair3);
 
             Bundle bundle = new Bundle();
             bundle.putString("cover", Item.getNovelImage());
             bundle.putString("title", Item.getNovel());
+            bundle.putString("author", Item.getAuthor());
             bundle.putInt("novelId", Item.getNovelId());
             intent.putExtras(bundle);
             startActivity(intent, options.toBundle());
