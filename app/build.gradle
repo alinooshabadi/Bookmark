@@ -37,12 +37,13 @@ android {
     minSdkVersion 19
     targetSdkVersion 25
     versionCode 1
-    versionName "1.0"
+    versionName "0.1-beta"
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     buildConfigField "int", "LIMIT", "100"
     buildConfigField "String", "BASEURL", "\"https://novler.com/api/\""
     buildConfigField "int", "CACHETIME", "432000" // 5days
     signingConfig signingConfigs.app_key
+    setProperty("archivesBaseName", "‌Bookmark-$versionName")
   }
   buildTypes {
     release {
@@ -89,6 +90,8 @@ dependencies {
   compile 'com.google.firebase:firebase-messaging:10.0.1'
 
   compile 'com.github.javiersantos:AppUpdater:2.5.1'
+
+  compile 'com.github.gabrielemariotti.changeloglib:changelog:2.1.0'
 
   apt 'com.google.dagger:dagger-compiler:2.5'
   compile 'com.google.dagger:dagger:2.5'

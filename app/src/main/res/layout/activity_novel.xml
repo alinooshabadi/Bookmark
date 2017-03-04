@@ -5,6 +5,14 @@
   android:layout_height="match_parent"
   tools:context=".ui.novel.NovelActivity">
 
+
+  <android.support.v7.widget.RecyclerView
+    android:id="@+id/list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
   <android.support.design.widget.AppBarLayout
     android:id="@+id/appBarLayout"
     android:layout_width="match_parent"
@@ -33,19 +41,44 @@
         <LinearLayout
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_margin="15dp"
+          android:layout_margin="10dp"
           android:layout_weight="0.90"
           android:orientation="vertical">
 
+          <LinearLayout
+            android:id="@+id/relative"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="15dp"
+            >
+
+          <TextView
+            android:id="@+id/rating"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/bg_round_rect"
+            android:gravity="center"
+            android:layout_gravity="start"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
           <TextView
             android:id="@+id/title"
-            android:layout_width="match_parent"
+            android:layout_weight="2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="start"
+            android:layout_gravity="end|center"
             android:text="تنهاترین سرداد"
-            android:textSize="16sp"
-            android:transitionName="novel_title" />
+            android:textSize="18sp"
 
+            android:transitionName="novel_title"
+            android:textColor="@color/white" />
+</LinearLayout>
           <TextView
             android:id="@+id/originalTitle"
             android:layout_width="match_parent"
@@ -54,28 +87,45 @@
             android:textSize="13sp"
             android:visibility="gone" />
 
-          <RatingBar
-            android:id="@+id/ratingBar"
-            style="?android:attr/ratingBarStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:numStars="5"
-            android:rating="4.5"
-            android:stepSize="0.5"
-            android:theme="@style/RatingBar" />
+
+
+
+
+
 
           <TextView
             android:id="@+id/author"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="13sp"
+            android:textColor="@color/white"
             android:transitionName="novel_author" />
 
           <TextView
             android:id="@+id/translator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:textSize="13sp" />
+
+          <TextView
+            android:id="@+id/publisher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="13sp" />
+
+          <ImageView
+            android:id="@+id/link"
+            android:backgroundTint="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_link_white"
+            android:layout_gravity="start"
+            android:textAlignment="viewStart"
+            android:paddingStart="15dp"
+            />
+
 
         </LinearLayout>
 
@@ -84,10 +134,12 @@
           android:layout_width="80dp"
           android:layout_height="130dp"
           android:layout_gravity="end"
-          android:layout_margin="15dp"
+          android:layout_margin="10dp"
           android:src="@drawable/novel_placeholder"
           android:transitionName="novel_cover"
-          app:radius="30.0" />
+          app:radius="35.0" />
+
+
       </LinearLayout>
 
       <android.support.v7.widget.Toolbar
@@ -100,33 +152,18 @@
 
         <TextView
           android:id="@+id/titleBar"
-          android:textColor="@color/white"
-          android:layout_gravity="start"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
+          android:layout_gravity="start"
           android:paddingEnd="20dp"
           android:paddingTop="15dp"
-          android:textSize="16sp"/>
+          android:textColor="@color/white"
+          android:textSize="16sp" />
+
+
       </android.support.v7.widget.Toolbar>
     </android.support.design.widget.CollapsingToolbarLayout>
 
   </android.support.design.widget.AppBarLayout>
-
-  <android.support.design.widget.FloatingActionButton
-    android:id="@+id/fab"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="16dp"
-    android:src="@drawable/ic_action_share"
-    app:borderWidth="0dp"
-    app:layout_anchor="@id/appBarLayout"
-    app:layout_anchorGravity="bottom|left|end" />
-
-  <android.support.v7.widget.RecyclerView
-    android:id="@+id/list"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </android.support.design.widget.CoordinatorLayout>
