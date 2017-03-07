@@ -10,6 +10,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+import com.novler.quotes.ui.author.FeaturedAuthorsActivity;
 import com.novler.quotes.ui.home.HomeActivity;
 import com.novler.quotes.ui.novel.FeaturedNovelsActivity;
 
@@ -55,6 +56,12 @@ public class BaseHomeApp extends BaseApp {
               Intent intent = new Intent(getApplicationContext(), FeaturedNovelsActivity.class);
               intent.setFlags(FLAG_ACTIVITY_REORDER_TO_FRONT);
               startActivity(intent);
+              break;
+
+            case R.id.action_authors:
+              Intent intentAuthors = new Intent(getApplicationContext(), FeaturedAuthorsActivity.class);
+              intentAuthors.setFlags(FLAG_ACTIVITY_REORDER_TO_FRONT);
+              startActivity(intentAuthors);
               break;
 
           }

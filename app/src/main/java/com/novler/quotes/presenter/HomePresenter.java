@@ -134,6 +134,25 @@ public class HomePresenter {
     subscriptions.add(subscription);
   }
 
+  public void getAuthorsFeaturedList() {
+    view.showWait();
+
+    Subscription subscription = service.getAuthorsFeaturedList(new Service.GetQuoteListCallback() {
+      @Override
+      public void onSuccess(ResponseData quoteListResponse) {
+        view.removeWait();
+        view.getListSuccess(quoteListResponse);
+      }
+
+      @Override
+      public void onError(NetworkError networkError) {
+        view.removeWait();
+        view.onFailure(networkError.getAppErrorMessage());
+      }
+    });
+    subscriptions.add(subscription);
+  }
+
   public void onStop() {
     subscriptions.unsubscribe();
   }

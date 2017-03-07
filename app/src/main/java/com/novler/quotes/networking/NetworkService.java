@@ -28,4 +28,7 @@ public interface NetworkService {
 
   @GET("novels/getfeatured")
   Observable<ResponseData> getNovelFeatured();
+
+  @GET("authors/getfeatured")
+  Observable<ResponseData> getAuthorsFeatured();
 }

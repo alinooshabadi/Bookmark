@@ -190,6 +190,35 @@ public class Service {
       });
   }
 
+  public Subscription getAuthorsFeaturedList(final GetQuoteListCallback callback) {
+    return networkService.getAuthorsFeatured()
+      .subscribeOn(Schedulers.io())
+      .observeOn(AndroidSchedulers.mainThread())
+      .onErrorResumeNext(new Func1<Throwable, Observable<? extends ResponseData>>() {
+        @Override
+        public Observable<? extends ResponseData> call(Throwable throwable) {
+          return Observable.error(throwable);
+        }
+      })
+      .subscribe(new Subscriber<ResponseData>() {
+        @Override
+        public void onCompleted() {
+
+        }
+
+        @Override
+        public void onError(Throwable e) {
+          callback.onError(new NetworkError(e));
+
+        }
+
+        @Override
+        public void onNext(ResponseData listResponse) {
+          callback.onSuccess(listResponse);
+        }
+      });
+  }
+
   public interface GetQuoteListCallback {
     void onSuccess(ResponseData cityListResponse);
 

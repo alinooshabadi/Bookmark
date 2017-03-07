@@ -28,6 +28,17 @@ public class ResponseData {
   @Expose
   private List<NovelData> novels = new ArrayList<NovelData>();
 
+  @Expose
+  private List<AuthorData> authors = new ArrayList<AuthorData>();
+
+  public List<AuthorData> getAuthors() {
+    return authors;
+  }
+
+  public void setAuthors(List<AuthorData> authors) {
+    this.authors = authors;
+  }
+
   public List<NovelData> getNovels() {
     return novels;
   }
