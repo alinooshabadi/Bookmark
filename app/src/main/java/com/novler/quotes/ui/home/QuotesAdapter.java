@@ -18,22 +18,21 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.novler.quotes.R;
 import com.novler.quotes.models.QuoteListData;
 import com.novler.quotes.ui.novel.NovelActivity;
-import com.novler.quotes.util.RoundedImageView;
 import com.novler.quotes.util.Util;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
+public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.ViewHolder> {
   private final OnItemClickListener listener;
   private List<QuoteListData> data;
   private Context context;
   private Activity activity;
 
-  public HomeAdapter(Activity activity, Context context, List<QuoteListData> data, OnItemClickListener listener) {
+  public QuotesAdapter(Activity activity, Context context, List<QuoteListData> data, OnItemClickListener listener) {
     this.data = data;
     this.activity = activity;
     this.listener = listener;
@@ -42,7 +41,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
 
   @Override
-  public HomeAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+  public QuotesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_quote, null);
     view.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT));
     return new ViewHolder(view);
@@ -55,7 +54,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
   }
 
   @Override
-  public void onBindViewHolder(HomeAdapter.ViewHolder holder, int position) {
+  public void onBindViewHolder(QuotesAdapter.ViewHolder holder, int position) {
     int lastPosition = -1;
     Animation animation = AnimationUtils.loadAnimation(context,
       (position > lastPosition) ? R.anim.up_from_bottom
@@ -93,6 +92,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     String images = data.get(position).getNovelImage();
     Glide.with(context).load(images)
       .placeholder(R.drawable.novel_placeholder)
+      .bitmapTransform(new RoundedCornersTransformation(context,20,5))
       .error(R.drawable.novel_placeholder)
       .crossFade()
       .diskCacheStrategy(DiskCacheStrategy.SOURCE)
@@ -118,6 +118,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     @BindView(R.id.titleCoverContainer)
     LinearLayout titleCoverContainer;
+    @BindView(R.id.textContainer)
+    LinearLayout textContainer;
+
     @BindView(R.id.parentLayout)
     LinearLayout parentLayout;
     @BindView(R.id.user)
@@ -128,10 +131,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     TextView tvNovel;
     @BindView(R.id.dateShamsi)
     TextView tvDate;
-    @BindView(R.id.author)
+    @BindView(R.id.novel_author)
     TextView tvAuthor;
     @BindView(R.id.image)
-    RoundedImageView cover;
+    ImageView cover;
     @BindView(R.id.shareTelegram)
     ImageView shareTelegram;
 
@@ -139,11 +142,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     ViewHolder(View itemView) {
       super(itemView);
       ButterKnife.bind(this, itemView);
-    }
-
-    @OnClick(R.id.image)
-    void submit(View view) {
-      // TODO submit data to server...
     }
 
 
@@ -158,6 +156,12 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     void click(final QuoteListData listData, final OnItemClickListener listener) {
       cover.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          listener.onClick(listData, v);
+        }
+      });
+      textContainer.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
           listener.onClick(listData, v);

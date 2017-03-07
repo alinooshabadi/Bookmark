@@ -1,12 +1,9 @@
 package com.novler.quotes.ui.home;
 
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.ColorRes;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -16,14 +13,13 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.github.javiersantos.appupdater.AppUpdater;
 import com.github.javiersantos.appupdater.enums.Display;
 import com.github.javiersantos.appupdater.enums.UpdateFrom;
-import com.novler.quotes.BaseApp;
+import com.novler.quotes.BaseHomeApp;
 import com.novler.quotes.R;
 import com.novler.quotes.models.ResponseData;
 import com.novler.quotes.networking.Service;
@@ -34,18 +30,17 @@ import com.novler.quotes.util.customLayout.PersianTabLayout;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
+import ir.adad.client.Adad;
 
 import static com.novler.quotes.R.id.pager;
 
 
-public class HomeActivity extends BaseApp implements BaseView{
+public class HomeActivity extends BaseHomeApp implements BaseView{
   @Inject
   public Service service;
   boolean doubleBackToExitPressedOnce = false;
 
-  @BindView(R.id.bottom_navigation)
-  BottomNavigationView mBottomNav;
+
   @BindView(R.id.snackBarParent)
   CoordinatorLayout snackBarParent;
   @BindView(R.id.layoutLinear)
@@ -58,6 +53,8 @@ public class HomeActivity extends BaseApp implements BaseView{
   ViewPager viewPager;
   @BindView(R.id.tab_layout)
   PersianTabLayout tabLayout;
+
+
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -87,7 +84,8 @@ public class HomeActivity extends BaseApp implements BaseView{
       .setButtonDoNotShowAgain("دیگه نشون نده");
 
 
-    appUpdater.start();
+
+    //appUpdater.start();
 
 
   }
@@ -113,8 +111,7 @@ public class HomeActivity extends BaseApp implements BaseView{
 
   public void renderView() {
     setContentView(R.layout.activity_main);
-    ButterKnife.bind(this);
-
+    super.renderView();
   }
 
   public void init() {
@@ -154,20 +151,6 @@ public class HomeActivity extends BaseApp implements BaseView{
       }
     });
 
-    mBottomNav.setOnNavigationItemSelectedListener(
-      new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-          switch (item.getItemId()) {
-            case R.id.action_authors:
-              Intent intent = new Intent(getApplicationContext(), GenresActivity.class);
-              startActivity(intent);
-              break;
-
-          }
-          return false;
-        }
-      });
 
     layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
   }

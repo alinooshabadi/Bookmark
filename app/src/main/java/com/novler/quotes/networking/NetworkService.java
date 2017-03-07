@@ -24,5 +24,8 @@ public interface NetworkService {
   Observable<ResponseData> getQuoteTrendingList();
 
   @GET("novels/getnovel/{id}")
-  Observable<ResponseData> getNovel(@Path("id") int id);
+  Observable<ResponseData> getNovel(@Path("id") String id);
+
+  @GET("novels/getfeatured")
+  Observable<ResponseData> getNovelFeatured();
 }

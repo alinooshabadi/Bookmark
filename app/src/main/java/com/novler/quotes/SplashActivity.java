@@ -3,7 +3,6 @@ package com.novler.quotes;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.novler.quotes.ui.home.HomeActivity;
@@ -12,7 +11,7 @@ import com.novler.quotes.util.FontUtil;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends BaseApp {
 
   @BindView(R.id.splash_bookmark)
   TextView bookmark;
@@ -20,24 +19,30 @@ public class SplashActivity extends AppCompatActivity {
   TextView novlerLink;
   @BindView(R.id.splash_novler_text)
   TextView novlerText;
+  @BindView(R.id.banner)
+  TextView mBanner;
+  @BindView(R.id.banner2)
+  TextView mBanner2;
+
+
 
   @Override
-  protected void onCreate(Bundle savedInstanceState) {
+  public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_splash);
     ButterKnife.bind(this);
     bookmark.setTypeface(FontUtil.getTypeface(getApplicationContext(), FontUtil.FontType.AGhasem));
     novlerLink.setTypeface(FontUtil.getTypeface(getApplicationContext(), FontUtil.FontType.IranSansBold));
     novlerText.setTypeface(FontUtil.getTypeface(getApplicationContext(), FontUtil.FontType.IranSansLight));
-
-
+    mBanner.setTypeface(FontUtil.getTypeface(getApplicationContext(), FontUtil.FontType.IranSansBold));
+    mBanner2.setTypeface(FontUtil.getTypeface(getApplicationContext(), FontUtil.FontType.IranSansBold));
 
         /* New Handler to start the Menu-Activity
          * and close this Splash-Screen after some seconds.*/
         /*
       Duration of wait
      */
-    int SPLASH_DISPLAY_LENGTH = 100;
+    int SPLASH_DISPLAY_LENGTH = 2500;
     new Handler().postDelayed(new Runnable() {
       @Override
       public void run() {

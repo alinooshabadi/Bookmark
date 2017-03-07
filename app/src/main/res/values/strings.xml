@@ -3,9 +3,5 @@
   <string name="text_quotes">نقل‌قول‌ها</string>
   <string name="text_novels">رمان‌ها</string>
   <string name="text_authors">نویسنده‌ها</string>
-
-
-  <string name="title_activity_novel"></string>
-
-
+  <string name="title_activity_novel">Bookmark</string>
 </resources>

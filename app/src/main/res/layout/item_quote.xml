@@ -7,6 +7,10 @@
   android:background="@color/white"
   android:orientation="vertical">
 
+  <LinearLayout
+    android:id="@+id/textContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
   <TextView
     android:id="@+id/text"
     android:layout_width="match_parent"
@@ -19,7 +23,8 @@
     android:paddingTop="20dp"
     android:text="\پراید سفید گل‌کاری شده بوق بوق‌کنان از جلو مغازه رد می‌شود. از عروس فقط لباس سفیدش را می‌بینم. حتما شبیه همه‌ی عروس‌های دیگری است که تا‌به‌حال دیده‌ام: زشت و تکراری. حتا می‌توانم آهنگ‌هایی را که برای رقص چاقوی امشب انتخاب می‌کنند حدس بزنم. بعد از نیم قرن، هنوز باباکرم با یک سروگردن اختلاف از بقیه‌ی آهنگ‌های‌شان بهتر است. یک مراسم تکراری و کسل‌کننده که با قایون دست، خانوما رقص، حالا برعکسشروع می‌شود و با آقایون، خانوما، بفرمایید شام تمام می‌شود\"
     android:textColor="#171818"
-    android:textSize="12sp" />
+    android:textSize="13sp" />
+  </LinearLayout>
 
 
   <LinearLayout
@@ -30,14 +35,13 @@
     android:paddingLeft="30dp"
     android:paddingRight="30dp">
 
-    <com.novler.quotes.util.RoundedImageView
+    <ImageView
       android:id="@+id/image"
       android:layout_width="50dp"
       android:layout_height="81dp"
       android:contentDescription="@null"
       android:src="@drawable/novel_placeholder"
-      android:transitionName="novel_cover"
-      card_view:radius="20.0" />
+      android:transitionName="novel_cover" />
 
     <LinearLayout
       android:layout_width="match_parent"
@@ -56,7 +60,7 @@
         android:transitionName="novel_title" />
 
       <TextView
-        android:id="@+id/author"
+        android:id="@+id/novel_author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/novel"
@@ -72,52 +76,54 @@
 
   </LinearLayout>
 
-  <LinearLayout
+  <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="30dp"
     android:layout_marginRight="30dp"
+    android:baselineAligned="false"
     android:gravity="bottom"
     android:orientation="horizontal"
     android:paddingBottom="10dp"
     android:paddingTop="5dp"
     android:textColor="@color/primary_text"
-    android:weightSum="10"
-    android:baselineAligned="false">
+    android:weightSum="10">
 
-    <TextView
-      android:id="@+id/dateShamsi"
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:layout_weight="5"
-      android:text="ریزوز"
-      android:gravity="left"
-      android:textColor="@color/secondary_text"
-      android:textSize="11sp"
-    />
+    <ImageView
+      android:id="@+id/shareTelegram"
+      android:layout_width="25dp"
+      android:layout_height="25dp"
+      android:layout_alignParentEnd="true"
+      android:layout_gravity="end"
+      android:layout_marginStart="8dp"
+      android:baselineAlignBottom="false"
+      android:contentDescription="@null"
+      android:src="@drawable/ic_action_share"
+      android:tint="@color/primary" />
 
     <TextView
       android:id="@+id/user"
-      android:layout_width="fill_parent"
-      android:layout_height="match_parent"
-      android:layout_weight="5"
-      android:text="انتخاب"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="5dp"
+      android:layout_toStartOf="@id/shareTelegram"
+      android:text="انتخاب شده توسط : زهرا"
       android:textColor="@color/secondary_text"
       android:textSize="11sp"
       android:textStyle="normal|bold" />
 
-    <ImageView
-      android:id="@+id/shareTelegram"
-      android:layout_width="20dp"
-      android:layout_height="match_parent"
-      android:layout_gravity="end"
-      android:baselineAlignBottom="false"
-      android:contentDescription="@null"
-      android:paddingLeft="5dp"
-      android:src="@drawable/ic_telegram_grey">
+    <TextView
+      android:id="@+id/dateShamsi"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="5dp"
+      android:gravity="end"
+      android:text="دیروز"
+      android:textColor="@color/secondary_text"
+      android:textSize="11sp" />
 
-    </ImageView>
-  </LinearLayout>
+
+  </RelativeLayout>
 
   <include layout="@layout/divider" />
 </LinearLayout>

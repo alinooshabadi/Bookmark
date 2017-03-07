@@ -25,6 +25,16 @@ public class ResponseData {
 
   @Expose
   private List<QuoteListData> quotes = new ArrayList<QuoteListData>();
+  @Expose
+  private List<NovelData> novels = new ArrayList<NovelData>();
+
+  public List<NovelData> getNovels() {
+    return novels;
+  }
+
+  public void setNovels(List<NovelData> novels) {
+    this.novels = novels;
+  }
 
   public NovelData getNovel() {
     return novel;

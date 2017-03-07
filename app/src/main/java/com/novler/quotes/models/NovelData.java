@@ -14,6 +14,9 @@ public class NovelData {
   @SerializedName("id")
   @Expose
   private Integer id;
+  @SerializedName("novlerId")
+  @Expose
+  private String novlerId;
   @SerializedName("title")
   @Expose
   private String title;
@@ -56,7 +59,13 @@ public class NovelData {
     this.url = url;
   }
 
+  public String getNovlerId() {
+    return novlerId;
+  }
 
+  public void setNovlerId(String novlerId) {
+    this.novlerId = novlerId;
+  }
 
   public Integer getId() {
     return id;

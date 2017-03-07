@@ -29,6 +29,15 @@
       app:expandedTitleTextAppearance="@style/ToolbarTitleTextAppearance"
       app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
+      <ImageView
+        android:id="@+id/backgroundPoster"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/novel_placeholder"
+        app:layout_collapseMode="parallax"
+        android:contentDescription="@null" />
+
       <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,66 +48,62 @@
 
 
         <LinearLayout
-          android:layout_width="wrap_content"
+          android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:layout_margin="10dp"
+          android:layout_margin="15dp"
           android:layout_weight="0.90"
           android:orientation="vertical">
 
-          <LinearLayout
-            android:id="@+id/relative"
+          <TextView
+            android:id="@+id/novel_originalTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="end"
+            android:text=""
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+
+          <LinearLayout android:id="@+id/relative"
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:orientation="horizontal"
-            android:layout_marginTop="15dp"
             android:layout_marginStart="15dp"
-            >
+            android:orientation="horizontal">
+
+
+            <TextView
+              android:id="@+id/rating"
+              android:layout_width="32dp"
+              android:layout_height="32dp"
+              android:layout_gravity="start"
+              android:background="@drawable/bg_round_rect"
+              android:gravity="center"
+              android:textAlignment="center"
+              android:textColor="@color/white"
+              android:textSize="12sp" />
+
+            <TextView
+              android:id="@+id/title"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="end|center"
+              android:layout_weight="2"
+              android:gravity="start"
+              android:text="تنهاترین سرداد"
+              android:textColor="@color/white"
+              android:textSize="20sp"
+              android:transitionName="novel_title" />
+          </LinearLayout>
+
 
           <TextView
-            android:id="@+id/rating"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@drawable/bg_round_rect"
-            android:gravity="center"
-            android:layout_gravity="start"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
-
-          <TextView
-            android:id="@+id/title"
-            android:layout_weight="2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="start"
-            android:layout_gravity="end|center"
-            android:text="تنهاترین سرداد"
-            android:textSize="18sp"
-
-            android:transitionName="novel_title"
-            android:textColor="@color/white" />
-</LinearLayout>
-          <TextView
-            android:id="@+id/originalTitle"
+            android:id="@+id/novel_author"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Into The Blue"
-            android:textSize="13sp"
-            android:visibility="gone" />
-
-
-
-
-
-
-
-          <TextView
-            android:id="@+id/author"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="13sp"
             android:textColor="@color/white"
+            android:textSize="13sp"
             android:transitionName="novel_author" />
 
           <TextView
@@ -115,29 +120,18 @@
             android:textColor="@color/white"
             android:textSize="13sp" />
 
-          <ImageView
-            android:id="@+id/link"
-            android:backgroundTint="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_link_white"
-            android:layout_gravity="start"
-            android:textAlignment="viewStart"
-            android:paddingStart="15dp"
-            />
-
 
         </LinearLayout>
 
-        <com.novler.quotes.util.RoundedImageView
+        <ImageView
           android:id="@+id/image"
           android:layout_width="80dp"
-          android:layout_height="130dp"
+          android:layout_height="155dp"
           android:layout_gravity="end"
           android:layout_margin="10dp"
+          android:paddingTop="25dp"
           android:src="@drawable/novel_placeholder"
-          android:transitionName="novel_cover"
-          app:radius="35.0" />
+          android:transitionName="novel_cover" />
 
 
       </LinearLayout>
@@ -150,17 +144,31 @@
         app:layout_collapseMode="pin"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-        <TextView
-          android:id="@+id/titleBar"
+        <RelativeLayout
           android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:layout_gravity="start"
-          android:paddingEnd="20dp"
-          android:paddingTop="15dp"
-          android:textColor="@color/white"
-          android:textSize="16sp" />
+          android:layout_height="match_parent">
 
+          <TextView
+            android:id="@+id/titleBar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:paddingTop="15dp"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
+          <ImageView
+            android:id="@+id/link"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="end"
+            android:backgroundTint="@color/white"
+            android:paddingEnd="15dp"
+            android:paddingStart="15dp"
+            android:src="@drawable/ic_link"
+            tools:ignore="UnusedAttribute" />
+        </RelativeLayout>
       </android.support.v7.widget.Toolbar>
     </android.support.design.widget.CollapsingToolbarLayout>
 

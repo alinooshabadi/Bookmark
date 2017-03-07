@@ -18,7 +18,7 @@ import com.novler.quotes.R;
 import com.novler.quotes.models.QuoteListData;
 import com.novler.quotes.models.ResponseData;
 import com.novler.quotes.ui.home.BaseView;
-import com.novler.quotes.ui.home.HomeAdapter;
+import com.novler.quotes.ui.home.QuotesAdapter;
 import com.novler.quotes.ui.novel.NovelActivity;
 import com.novler.quotes.util.ShareUtil;
 import com.novler.quotes.util.Util;
@@ -89,8 +89,8 @@ public class BaseQuotesFragment extends Fragment implements BaseView {
 
   @Override
   public void getListSuccess(ResponseData listResponse) {
-    HomeAdapter adapter = new HomeAdapter(getActivity(), getActivity().getApplicationContext(), listResponse.getQuotes(),
-      new HomeAdapter.OnItemClickListener() {
+    QuotesAdapter adapter = new QuotesAdapter(getActivity(), getActivity().getApplicationContext(), listResponse.getQuotes(),
+      new QuotesAdapter.OnItemClickListener() {
         @Override
         public void onClick(QuoteListData Item, View view) {
           if (view.getId() == R.id.shareTelegram) {
@@ -103,7 +103,7 @@ public class BaseQuotesFragment extends Fragment implements BaseView {
               +"@novler"
             );
 
-            ShareUtil.intentMessageTelegram(getActivity(), telegramText);
+            ShareUtil.intentMessage(getActivity(), telegramText);
           } else {
             Intent intent = new Intent(getActivity(), NovelActivity.class);
             Pair<View, String> pair1 = Pair.create(view, "novel_title");
@@ -116,6 +116,7 @@ public class BaseQuotesFragment extends Fragment implements BaseView {
             bundle.putString("cover", Item.getNovelImage());
             bundle.putString("title", Item.getNovel());
             bundle.putString("author", Item.getAuthor());
+            bundle.putString("novlerId", Item.getNovelNovlerId());
             bundle.putInt("novelId", Item.getNovelId());
             intent.putExtras(bundle);
             startActivity(intent, options.toBundle());

@@ -132,7 +132,7 @@ public class Service {
       });
   }
 
-  public Subscription getNovel(final GetQuoteListCallback callback, int id) {
+  public Subscription getNovel(final GetQuoteListCallback callback, String id) {
     return networkService.getNovel(id)
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
@@ -161,6 +161,34 @@ public class Service {
       });
   }
 
+  public Subscription getNovelFeaturedList(final GetQuoteListCallback callback) {
+    return networkService.getNovelFeatured()
+      .subscribeOn(Schedulers.io())
+      .observeOn(AndroidSchedulers.mainThread())
+      .onErrorResumeNext(new Func1<Throwable, Observable<? extends ResponseData>>() {
+        @Override
+        public Observable<? extends ResponseData> call(Throwable throwable) {
+          return Observable.error(throwable);
+        }
+      })
+      .subscribe(new Subscriber<ResponseData>() {
+        @Override
+        public void onCompleted() {
+
+        }
+
+        @Override
+        public void onError(Throwable e) {
+          callback.onError(new NetworkError(e));
+
+        }
+
+        @Override
+        public void onNext(ResponseData listResponse) {
+          callback.onSuccess(listResponse);
+        }
+      });
+  }
 
   public interface GetQuoteListCallback {
     void onSuccess(ResponseData cityListResponse);

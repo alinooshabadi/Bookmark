@@ -25,6 +25,15 @@ public class ShareUtil {
     }
   }
 
+  public static void intentMessage(Activity activity, String msg)
+  {
+    Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+    sharingIntent.setType("text/plain");
+    sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
+    sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, msg);
+    activity.startActivity(Intent.createChooser(sharingIntent, "Share with"));
+  }
+
   private static boolean isAppAvailable(Context context, String appName) {
     PackageManager pm = context.getPackageManager();
     try {

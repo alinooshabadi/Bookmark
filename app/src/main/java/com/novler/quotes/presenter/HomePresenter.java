@@ -96,7 +96,7 @@ public class HomePresenter {
     subscriptions.add(subscription);
   }
 
-  public void getNovel(int id) {
+  public void getNovel(String id) {
     view.showWait();
 
     Subscription subscription = service.getNovel(new Service.GetQuoteListCallback() {
@@ -112,6 +112,25 @@ public class HomePresenter {
         view.onFailure(networkError.getAppErrorMessage());
       }
     }, id);
+    subscriptions.add(subscription);
+  }
+
+  public void getNovelFeaturedList() {
+    view.showWait();
+
+    Subscription subscription = service.getNovelFeaturedList(new Service.GetQuoteListCallback() {
+      @Override
+      public void onSuccess(ResponseData quoteListResponse) {
+        view.removeWait();
+        view.getListSuccess(quoteListResponse);
+      }
+
+      @Override
+      public void onError(NetworkError networkError) {
+        view.removeWait();
+        view.onFailure(networkError.getAppErrorMessage());
+      }
+    });
     subscriptions.add(subscription);
   }
 
