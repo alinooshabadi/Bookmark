@@ -30,7 +30,6 @@ import com.novler.quotes.util.customLayout.PersianTabLayout;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import ir.adad.client.Adad;
 
 import static com.novler.quotes.R.id.pager;
 
@@ -166,7 +165,6 @@ public class HomeActivity extends BaseHomeApp implements BaseView{
     this.doubleBackToExitPressedOnce = true;
     Snackbar snackbar = Snackbar
       .make(snackBarParent, "برای خروج دوباره بازگشت را بزنید", Snackbar.LENGTH_LONG);
-
     snackbar.show();
 
 
