@@ -1,4 +1,4 @@
-package com.novler.quotes.ui.home;
+package com.novler.quotes.ui.quote;
 
 import android.app.Activity;
 import android.content.Context;

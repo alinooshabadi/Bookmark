@@ -29,6 +29,9 @@ public class NovelData {
   @SerializedName("authorId")
   @Expose
   private @Nullable Integer authorId;
+  @SerializedName("authorNovlerId")
+  @Expose
+  private @Nullable String authorNovlerId;
   @SerializedName("translator")
   @Expose
   private @Nullable String translator;
@@ -50,6 +53,14 @@ public class NovelData {
   @SerializedName("url")
   @Expose
   private String url;
+
+  @Nullable public String getAuthorNovlerId() {
+    return authorNovlerId;
+  }
+
+  public void setAuthorNovlerId(@Nullable String authorNovlerId) {
+    this.authorNovlerId = authorNovlerId;
+  }
 
   public String getUrl() {
     return url;

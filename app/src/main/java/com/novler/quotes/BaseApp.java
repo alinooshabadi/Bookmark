@@ -23,12 +23,14 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class BaseApp extends AppCompatActivity implements Observer {
   Deps deps;
   FirebaseAnalytics mFirebaseAnalytics;
+  public static String mNetworkStatus;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     Fabric.with(this, new Crashlytics());
     mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
     File cacheFile = new File(getCacheDir(), "responses");
     deps = DaggerDeps.builder().networkModule(new NetworkModule(cacheFile)).build();
 
@@ -48,7 +50,7 @@ public class BaseApp extends AppCompatActivity implements Observer {
   }
 
   @Override public void update(Observable o, Object arg) {
-    String status = NetworkUtil.getConnectivityStatusString(getApplicationContext());
+    mNetworkStatus = NetworkUtil.getConnectivityStatusString(getApplicationContext());
     //Toast.makeText(this, status, Toast.LENGTH_SHORT).show();
   }
 }

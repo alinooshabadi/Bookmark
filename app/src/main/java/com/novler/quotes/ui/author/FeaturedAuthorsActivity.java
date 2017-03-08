@@ -1,6 +1,9 @@
 package com.novler.quotes.ui.author;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -102,12 +105,23 @@ public class FeaturedAuthorsActivity extends BaseHomeApp implements BaseView {
   @Override public void getListSuccess(ResponseData listResponse) {
     AuthorsAdapter adapter = new AuthorsAdapter(this, this.getApplicationContext(), listResponse.getAuthors(),
       new AuthorsAdapter.OnItemClickListener() {
-
-
         @Override public void onClick(AuthorData Item, View view) {
 
-        }
-      });
+            Intent intent = new Intent(FeaturedAuthorsActivity.this, AuthorActivity.class);
+            Pair<View, String> pair1 = Pair.create(view, "novel_title");
+            Pair<View, String> pair2 = Pair.create(view, "novel_author");
+            Pair<View, String> pair3 = Pair.create(view, "novel_cover");
+            ActivityOptionsCompat options = ActivityOptionsCompat.
+              makeSceneTransitionAnimation(FeaturedAuthorsActivity.this, pair1, pair2, pair3);
+
+            Bundle bundle = new Bundle();
+            bundle.putString("title", Item.getTitle());
+            bundle.putInt("novelId", Item.getId());
+            bundle.putString("novlerId", Item.getNovlerId());
+            intent.putExtras(bundle);
+            startActivity(intent, options.toBundle());
+          }
+        });
 
     list.setAdapter(adapter);
   }

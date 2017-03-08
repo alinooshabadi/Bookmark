@@ -1,9 +1,11 @@
 package com.novler.quotes.networking;
 
+import com.novler.quotes.BaseApp;
 import com.novler.quotes.BuildConfig;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 import javax.inject.Singleton;
 
@@ -18,9 +20,7 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
-/**
- * Created by P on 2/14/2017.
- */
+
 @Module
 public class NetworkModule {
   File cacheFile;
@@ -43,17 +43,31 @@ public class NetworkModule {
       .addInterceptor(new Interceptor() {
         @Override
         public okhttp3.Response intercept(Chain chain) throws IOException {
-          Request original = chain.request();
-
+          Request request = chain.request();
           // Customize the request
-          Request request = original.newBuilder()
-            .header("Content-Type", "application/json")
-            .removeHeader("Pragma")
-            .header("Cache-Control", String.format("max-age=%d", BuildConfig.CACHETIME))
-            .build();
+          if (!Objects.equals(BaseApp.mNetworkStatus, "Not connected to Internet")) {
+            request = request.newBuilder()
+              .header("Content-Type", "application/json")
+              .removeHeader("Pragma")
+              .header("Cache-Control", String.format("max-age=%d", BuildConfig.CACHETIME))
+              .build();
+          } else {
+            request = request.newBuilder()
+              .header("Content-Type", "application/json")
+              .removeHeader("Pragma")
+              .header("Cache-Control", "public, only-if-cached, max-stale=" + 60 * 60 * 24 * 7)
+              .build();
+          }
+
+
 
           okhttp3.Response response = chain.proceed(request);
-          response.cacheResponse();
+          if (response.cacheControl() != null) {
+            response.cacheResponse();
+          } else if (response.networkResponse() != null) {
+            response.cacheResponse();
+          }
+
           // Customize or return the response
           return response;
         }

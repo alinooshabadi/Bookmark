@@ -18,7 +18,6 @@ import com.novler.quotes.R;
 import com.novler.quotes.models.QuoteListData;
 import com.novler.quotes.models.ResponseData;
 import com.novler.quotes.ui.home.BaseView;
-import com.novler.quotes.ui.home.QuotesAdapter;
 import com.novler.quotes.ui.novel.NovelActivity;
 import com.novler.quotes.util.ShareUtil;
 import com.novler.quotes.util.Util;

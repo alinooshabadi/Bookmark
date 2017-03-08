@@ -37,6 +37,18 @@ public class AuthorData {
   @SerializedName("views")
   @Expose
   private Integer views;
+  @SerializedName("url")
+  @Expose
+  private String url;
+  public String getUrl() {
+    return url;
+  }
+
+  public void setUrl(String url) {
+    this.url = url;
+  }
+
+
 
   public Integer getId() {
     return id;

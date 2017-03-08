@@ -80,7 +80,7 @@ public class AuthorsAdapter extends RecyclerView.Adapter<AuthorsAdapter.ViewHold
     holder.click(data.get(position), listener);
 
 
-    holder.tvNovelAuthor.setTypeface(FontUtil.getTypeface(context, FontUtil.FontType.IranSansBold));
+
     holder.tvNovelTitle.setText(data.get(position).getTitle());
     holder.tvNovelTitle.setTypeface(FontUtil.getTypeface(context, FontUtil.FontType.IranSansBold));
     holder.tvNovelOriginalTitle.setText(data.get(position).getOriginalTitle());
@@ -88,9 +88,9 @@ public class AuthorsAdapter extends RecyclerView.Adapter<AuthorsAdapter.ViewHold
 
     String images = data.get(position).getImageUrl();
     Glide.with(context).load(images)
-      .placeholder(R.drawable.novel_placeholder)
+      .placeholder(R.drawable.author_placeholder)
       .bitmapTransform(new CropCircleTransformation(context))
-      .error(R.drawable.novel_placeholder)
+      .error(R.drawable.author_placeholder)
       .crossFade()
       .diskCacheStrategy(DiskCacheStrategy.SOURCE)
       .skipMemoryCache(true)
@@ -99,7 +99,7 @@ public class AuthorsAdapter extends RecyclerView.Adapter<AuthorsAdapter.ViewHold
     Glide.with(context).load(images)
       .placeholder(R.drawable.background_placeholder)
       .bitmapTransform(new BlurTransformation(context), new ColorFilterTransformation(context,Color.argb(200,0,0,0)))
-      .error(R.drawable.novel_placeholder)
+      .error(R.drawable.background_placeholder)
       .diskCacheStrategy(DiskCacheStrategy.SOURCE)
       .skipMemoryCache(true)
       .into(holder.ivBackground);
@@ -125,8 +125,6 @@ public class AuthorsAdapter extends RecyclerView.Adapter<AuthorsAdapter.ViewHold
     @BindView(R.id.feature_background)
     ImageView ivBackground;
 
-    @BindView(R.id.novel_author)
-    TextView tvNovelAuthor;
 
     @BindView(R.id.novel_originalTitle)
     TextView tvNovelOriginalTitle;

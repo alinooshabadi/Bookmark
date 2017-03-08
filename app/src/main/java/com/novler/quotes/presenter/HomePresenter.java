@@ -23,7 +23,7 @@ public class HomePresenter {
   public void getQuoteList() {
     view.showWait();
 
-    Subscription subscription = service.getQuoteList(new Service.GetQuoteListCallback() {
+    Subscription subscription = service.getQuoteList(new Service.GetListCallback() {
       @Override
       public void onSuccess(ResponseData quoteListResponse) {
         view.removeWait();
@@ -42,7 +42,7 @@ public class HomePresenter {
   public void getQuoteBestList() {
     view.showWait();
 
-    Subscription subscription = service.getQuoteBestList(new Service.GetQuoteListCallback() {
+    Subscription subscription = service.getQuoteBestList(new Service.GetListCallback() {
       @Override
       public void onSuccess(ResponseData quoteListResponse) {
         view.removeWait();
@@ -61,7 +61,7 @@ public class HomePresenter {
   public void getQuoteTrendingList() {
     view.showWait();
 
-    Subscription subscription = service.getQuoteTrendingList(new Service.GetQuoteListCallback() {
+    Subscription subscription = service.getQuoteTrendingList(new Service.GetListCallback() {
       @Override
       public void onSuccess(ResponseData quoteListResponse) {
         view.removeWait();
@@ -80,7 +80,7 @@ public class HomePresenter {
   public void getQuoteRandomList() {
     view.showWait();
 
-    Subscription subscription = service.getQuoteRandomList(new Service.GetQuoteListCallback() {
+    Subscription subscription = service.getQuoteRandomList(new Service.GetListCallback() {
       @Override
       public void onSuccess(ResponseData quoteListResponse) {
         view.removeWait();
@@ -99,7 +99,7 @@ public class HomePresenter {
   public void getNovel(String id) {
     view.showWait();
 
-    Subscription subscription = service.getNovel(new Service.GetQuoteListCallback() {
+    Subscription subscription = service.getNovel(new Service.GetListCallback() {
       @Override
       public void onSuccess(ResponseData quoteListResponse) {
         view.removeWait();
@@ -118,7 +118,7 @@ public class HomePresenter {
   public void getNovelFeaturedList() {
     view.showWait();
 
-    Subscription subscription = service.getNovelFeaturedList(new Service.GetQuoteListCallback() {
+    Subscription subscription = service.getNovelFeaturedList(new Service.GetListCallback() {
       @Override
       public void onSuccess(ResponseData quoteListResponse) {
         view.removeWait();
@@ -133,11 +133,28 @@ public class HomePresenter {
     });
     subscriptions.add(subscription);
   }
+  public void getAuthor(String id) {
+    view.showWait();
 
+    Subscription subscription = service.getAuthor(new Service.GetListCallback() {
+      @Override
+      public void onSuccess(ResponseData quoteListResponse) {
+        view.removeWait();
+        view.getListSuccess(quoteListResponse);
+      }
+
+      @Override
+      public void onError(NetworkError networkError) {
+        view.removeWait();
+        view.onFailure(networkError.getAppErrorMessage());
+      }
+    }, id);
+    subscriptions.add(subscription);
+  }
   public void getAuthorsFeaturedList() {
     view.showWait();
 
-    Subscription subscription = service.getAuthorsFeaturedList(new Service.GetQuoteListCallback() {
+    Subscription subscription = service.getAuthorsFeaturedList(new Service.GetListCallback() {
       @Override
       public void onSuccess(ResponseData quoteListResponse) {
         view.removeWait();

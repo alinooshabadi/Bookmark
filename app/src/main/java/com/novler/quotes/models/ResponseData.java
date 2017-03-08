@@ -23,6 +23,10 @@ public class ResponseData {
   @Expose
   private NovelData novel = new NovelData();
 
+
+  @Expose
+  private AuthorData author = new AuthorData();
+
   @Expose
   private List<QuoteListData> quotes = new ArrayList<QuoteListData>();
   @Expose
@@ -33,6 +37,14 @@ public class ResponseData {
 
   public List<AuthorData> getAuthors() {
     return authors;
+  }
+
+  public AuthorData getAuthor() {
+    return author;
+  }
+
+  public void setAuthor(AuthorData author) {
+    this.author = author;
   }
 
   public void setAuthors(List<AuthorData> authors) {

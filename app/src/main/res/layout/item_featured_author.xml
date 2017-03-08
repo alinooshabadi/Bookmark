@@ -9,7 +9,7 @@
   <ImageView
     android:id="@+id/feature_background"
     android:layout_width="match_parent"
-    android:layout_height="160dp"
+    android:layout_height="120dp"
     android:contentDescription="@null"
     android:scaleType="centerCrop"
     android:src="@drawable/background_placeholder"
@@ -51,16 +51,7 @@
         android:textColor="@color/white"
         android:textSize="18sp" />
 
-      <TextView
-        android:id="@id/novel_author"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:layout_below="@id/novel_title"
-        android:text="عباس معروفی"
-        android:transitionName="novel_author"
-        android:textColor="@color/white"
-        android:textSize="13sp" />
+
 
 
     </RelativeLayout>
@@ -69,8 +60,9 @@
       android:id="@+id/feature_cover"
       android:layout_width="80dp"
       android:layout_height="80dp"
+      android:scaleType="fitCenter"
       android:transitionName="novel_cover"
-      android:src="@drawable/novel_placeholder" />
+      android:src="@drawable/author_placeholder" />
 
   </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>
