@@ -1,6 +1,7 @@
 package com.novler.quotes;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.TextView;
@@ -23,6 +24,8 @@ public class SplashActivity extends BaseApp {
   TextView mBanner;
   @BindView(R.id.banner2)
   TextView mBanner2;
+  @BindView(R.id.version)
+  TextView tvVersion;
 
 
 
@@ -37,11 +40,17 @@ public class SplashActivity extends BaseApp {
     mBanner.setTypeface(FontUtil.getTypeface(getApplicationContext(), FontUtil.FontType.IranSansBold));
     mBanner2.setTypeface(FontUtil.getTypeface(getApplicationContext(), FontUtil.FontType.IranSansBold));
 
-        /* New Handler to start the Menu-Activity
-         * and close this Splash-Screen after some seconds.*/
-        /*
-      Duration of wait
-     */
+
+    String versionName = "";
+    try {
+      versionName = getApplicationContext()
+        .getPackageManager().getPackageInfo(getApplicationContext().getPackageName(), 0).versionName;
+    } catch (PackageManager.NameNotFoundException e) {
+      e.printStackTrace();
+    }
+
+    tvVersion.setText("v "+versionName);
+
     int SPLASH_DISPLAY_LENGTH = 2500;
     new Handler().postDelayed(new Runnable() {
       @Override

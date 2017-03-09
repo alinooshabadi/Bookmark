@@ -71,11 +71,12 @@
       android:textSize="18dp" />
 
     <TextView
+      android:id="@+id/version"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:gravity="center"
       android:paddingTop="20dp"
-      android:text="v 0.3-beta"
+      android:text="v"
       android:textAlignment="center"
       android:textColor="@color/white"
       android:textSize="12dp" />

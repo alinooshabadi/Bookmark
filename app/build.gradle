@@ -36,8 +36,8 @@ android {
     applicationId "com.novler.quotes"
     minSdkVersion 19
     targetSdkVersion 25
-    versionCode 3
-    versionName "0.3-beta"
+    versionCode 4
+    versionName "0.4-beta"
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     buildConfigField "int", "LIMIT", "100"
     buildConfigField "String", "BASEURL", "\"https://novler.com/api/\""
