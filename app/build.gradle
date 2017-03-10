@@ -101,6 +101,8 @@ dependencies {
 
   compile 'com.ms-square:expandableTextView:0.1.4'
 
+  compile 'me.grantland:autofittextview:0.2.1'
+
   compile files('libs/adad-client-3.1.jar')
 
   apt 'com.google.dagger:dagger-compiler:2.5'

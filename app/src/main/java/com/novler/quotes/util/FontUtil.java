@@ -11,6 +11,7 @@ public class FontUtil {
   private static Typeface mGhasemFont;
   private static Typeface mIranLightFont;
   private static Typeface mIranBoldFont;
+  private static Typeface mYekan;
 
   /**
    * @return Typeface Instance with the font passed as parameter
@@ -34,6 +35,12 @@ public class FontUtil {
           mIranBoldFont = Typeface.createFromAsset(context.getAssets(), typefaceName);
         }
         typeFace = mIranBoldFont;
+      }
+      else if (typefaceName.equals(FontType.Yekan.toString())) {
+        if (mYekan == null) {
+          mYekan = Typeface.createFromAsset(context.getAssets(), typefaceName);
+        }
+        typeFace = mYekan;
       }
     } catch (Exception ex) {
       typeFace = Typeface.DEFAULT;
@@ -66,6 +73,12 @@ public class FontUtil {
     IranSansBold {
       public String toString() {
         return "fonts/IRANSansMobile_Bold.ttf";
+      }
+    },
+
+    Yekan {
+      public String toString() {
+        return "fonts/Yekan.ttf";
       }
     }
   }

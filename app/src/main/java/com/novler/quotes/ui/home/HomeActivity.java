@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.ColorRes;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
@@ -15,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.javiersantos.appupdater.AppUpdater;
 import com.github.javiersantos.appupdater.enums.Display;
@@ -163,10 +163,8 @@ public class HomeActivity extends BaseHomeApp implements BaseView{
     }
 
     this.doubleBackToExitPressedOnce = true;
-    Snackbar snackbar = Snackbar
-      .make(snackBarParent, "برای خروج دوباره بازگشت را بزنید", Snackbar.LENGTH_LONG);
-    snackbar.show();
 
+    Toast.makeText(this,  "برای خروج دوباره بازگشت را بزنید", Toast.LENGTH_SHORT).show();
 
     new Handler().postDelayed(new Runnable() {
 

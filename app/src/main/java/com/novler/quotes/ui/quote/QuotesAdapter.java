@@ -137,6 +137,8 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.ViewHolder
     ImageView cover;
     @BindView(R.id.shareTelegram)
     ImageView shareTelegram;
+    @BindView(R.id.shareInsta)
+    ImageView shareInstagram;
 
 
     ViewHolder(View itemView) {
@@ -147,6 +149,12 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.ViewHolder
 
     void share(final QuoteListData listData, final OnItemClickListener listener) {
       shareTelegram.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          listener.onClick(listData, v);
+        }
+      });
+      shareInstagram.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
           listener.onClick(listData, v);

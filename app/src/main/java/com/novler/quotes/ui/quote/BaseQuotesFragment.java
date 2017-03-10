@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.novler.quotes.ExportInstagramActivity;
 import com.novler.quotes.R;
 import com.novler.quotes.models.QuoteListData;
 import com.novler.quotes.models.ResponseData;
@@ -103,7 +104,17 @@ public class BaseQuotesFragment extends Fragment implements BaseView {
             );
 
             ShareUtil.intentMessage(getActivity(), telegramText);
-          } else {
+          }
+          if (view.getId() == R.id.shareInsta) {
+            Intent intent = new Intent(getActivity(), ExportInstagramActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("title", Item.getNovel());
+            bundle.putString("author", Item.getAuthor());
+            bundle.putString("text", Util.clearText(Item.getText()));
+            intent.putExtras(bundle);
+            startActivity(intent);
+          }
+          else {
             Intent intent = new Intent(getActivity(), NovelActivity.class);
             Pair<View, String> pair1 = Pair.create(view, "novel_title");
             Pair<View, String> pair2 = Pair.create(view, "novel_author");

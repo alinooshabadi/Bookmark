@@ -101,12 +101,24 @@
       android:src="@drawable/ic_action_share"
       android:tint="@color/primary" />
 
+    <ImageView
+      android:id="@+id/shareInsta"
+      android:layout_width="20dp"
+      android:layout_toStartOf="@id/shareTelegram"
+      android:layout_height="20dp"
+      android:layout_gravity="end"
+      android:layout_marginStart="8dp"
+      android:baselineAlignBottom="false"
+      android:contentDescription="@null"
+      android:src="@drawable/ic_instagram"
+      android:tint="@color/primary" />
+
     <TextView
       android:id="@+id/user"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="5dp"
-      android:layout_toStartOf="@id/shareTelegram"
+      android:layout_toStartOf="@id/shareInsta"
       android:text="انتخاب شده توسط : زهرا"
       android:textColor="@color/secondary_text"
       android:textSize="11sp"

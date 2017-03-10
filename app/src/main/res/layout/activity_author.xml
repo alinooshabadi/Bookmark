@@ -86,8 +86,7 @@
                 android:layout_weight="2"
                 android:gravity="start"
                 android:textColor="@color/white"
-                android:textSize="20sp"
-                android:transitionName="novel_title" />
+                android:textSize="20sp" />
 
               <TextView
                 android:id="@+id/authur_DeathDate"
