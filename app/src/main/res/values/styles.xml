@@ -10,14 +10,11 @@
 
   </style>
   <style name="PrimaryButton" parent="Theme.AppCompat">
-    <item name="colorButtonNormal">@color/colorPrimary</item>
-    <item name="colorControlHighlight">@color/colorAccent</item>
+    <item name="colorButtonNormal">@color/flatGreen</item>
+    <item name="colorControlHighlight">@color/flatGreenHighlight</item>
   </style>
-  <style name="PrimaryFlatButton" parent="Theme.AppCompat.Light">
-    <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Borderless.Colored</item>
-    <item name="colorControlHighlight">@color/colorAccent</item>
-    <item name="colorAccent">@color/colorPrimary</item>
-  </style>
+
+
   <style name="myActionButtonStyle" parent="Widget.AppCompat.ActionButton">
     <item name="android:minWidth">30dp</item>
     <item name="android:maxWidth">48dp</item>

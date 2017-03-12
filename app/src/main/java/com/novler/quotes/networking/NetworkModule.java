@@ -20,7 +20,6 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
-
 @Module
 public class NetworkModule {
   File cacheFile;
@@ -59,8 +58,6 @@ public class NetworkModule {
               .build();
           }
 
-
-
           okhttp3.Response response = chain.proceed(request);
           if (response.cacheControl() != null) {
             response.cacheResponse();
@@ -75,7 +72,6 @@ public class NetworkModule {
       .cache(cache)
 
       .build();
-
 
     return new Retrofit.Builder()
       .baseUrl(BuildConfig.BASEURL)

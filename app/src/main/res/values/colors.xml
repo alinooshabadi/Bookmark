@@ -18,6 +18,9 @@
   <color name="asphalt">#263238</color>
 
 
+  <color name="flatGreen">#27ae60</color>
+  <color name="flatGreenHighlight">#2ecc71</color>
+  <color name="flatBlue">#2980b9</color>
 
   <color name="linePurple">#9277FF</color>
   <color name="lineOrange">#F4AB57</color>

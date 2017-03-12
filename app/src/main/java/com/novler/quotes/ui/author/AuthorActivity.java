@@ -90,7 +90,6 @@ public class AuthorActivity extends BaseApp implements BaseView {
   String mAuthor = "";
   String mNovlerId = "";
 
-
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -99,7 +98,6 @@ public class AuthorActivity extends BaseApp implements BaseView {
     getIntents();
     renderView();
     init();
-
 
     mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
       boolean isShow = false;
@@ -264,7 +262,6 @@ public class AuthorActivity extends BaseApp implements BaseView {
       .into(ivBackgroundPoster);
 
   }
-
 
   public void getIntents() {
     Bundle b = getIntent().getExtras();

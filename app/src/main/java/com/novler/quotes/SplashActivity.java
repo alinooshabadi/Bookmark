@@ -51,7 +51,7 @@ public class SplashActivity extends BaseApp {
 
     tvVersion.setText("v "+versionName);
 
-    int SPLASH_DISPLAY_LENGTH = 2500;
+    int SPLASH_DISPLAY_LENGTH = BuildConfig.DEBUG?0: 2500;
     new Handler().postDelayed(new Runnable() {
       @Override
       public void run() {
