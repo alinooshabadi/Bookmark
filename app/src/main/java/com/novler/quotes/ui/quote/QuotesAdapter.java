@@ -18,7 +18,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.novler.quotes.R;
 import com.novler.quotes.models.QuoteListData;
 import com.novler.quotes.ui.novel.NovelActivity;
-import com.novler.quotes.util.Util;
+import com.novler.quotes.util.Utils;
 
 import java.util.List;
 
@@ -85,7 +85,7 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.ViewHolder
       holder.parentLayout.setBackground(context.getResources().getDrawable(R.drawable.border_orange));
 
     holder.tvText.setText(Html.fromHtml(
-      Util.clearText( data.get(position).getText())
+      Utils.clearText( data.get(position).getText())
     ));
 
 
@@ -148,6 +148,10 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.ViewHolder
 
 
     void share(final QuoteListData listData, final OnItemClickListener listener) {
+
+    }
+
+    void click(final QuoteListData listData, final OnItemClickListener listener) {
       shareTelegram.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -160,9 +164,6 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.ViewHolder
           listener.onClick(listData, v);
         }
       });
-    }
-
-    void click(final QuoteListData listData, final OnItemClickListener listener) {
       cover.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {

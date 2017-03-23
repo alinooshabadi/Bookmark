@@ -91,10 +91,10 @@
 
     <ImageView
       android:id="@+id/shareTelegram"
-      android:layout_width="25dp"
-      android:layout_height="25dp"
+      android:layout_width="22dp"
+      android:layout_height="22dp"
       android:layout_alignParentEnd="true"
-      android:layout_gravity="end"
+      android:layout_gravity="center_vertical"
       android:layout_marginStart="8dp"
       android:baselineAlignBottom="false"
       android:contentDescription="@null"
@@ -106,9 +106,9 @@
       android:layout_width="20dp"
       android:layout_toStartOf="@id/shareTelegram"
       android:layout_height="20dp"
-      android:layout_gravity="end"
+      android:layout_gravity="center_vertical"
       android:layout_marginStart="8dp"
-      android:baselineAlignBottom="false"
+
       android:contentDescription="@null"
       android:src="@drawable/ic_instagram"
       android:tint="@color/primary" />

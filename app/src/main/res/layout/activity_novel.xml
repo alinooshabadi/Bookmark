@@ -33,10 +33,10 @@
         android:id="@+id/backgroundPoster"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@null"
         android:scaleType="centerCrop"
         android:src="@drawable/background_placeholder"
-        app:layout_collapseMode="parallax"
-        android:contentDescription="@null" />
+        app:layout_collapseMode="parallax" />
 
       <LinearLayout
         android:layout_width="match_parent"
@@ -91,7 +91,7 @@
               android:layout_gravity="end|center"
               android:layout_weight="2"
               android:gravity="start"
-              android:text="تنهاترین سرداد"
+              android:text=""
               android:textColor="@color/white"
               android:textSize="20sp"
               android:transitionName="novel_title" />
@@ -161,13 +161,28 @@
             android:id="@+id/link"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
             android:layout_gravity="end"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="15dp"
             android:backgroundTint="@color/white"
-            android:paddingEnd="15dp"
-            android:paddingStart="15dp"
+            android:contentDescription="@null"
             android:src="@drawable/ic_link"
+            android:tint="@color/white"
             tools:ignore="UnusedAttribute" />
+
+          <ImageView
+            android:id="@+id/share"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_toStartOf="@id/link"
+            android:backgroundTint="@color/white"
+            android:contentDescription="@null"
+            android:padding="2dp"
+            android:src="@drawable/ic_action_share"
+            android:tint="@color/white"
+            tools:ignore="UnusedAttribute" />
+
         </RelativeLayout>
       </android.support.v7.widget.Toolbar>
     </android.support.design.widget.CollapsingToolbarLayout>

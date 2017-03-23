@@ -22,14 +22,19 @@ public class EmptySwipeRefreshLayout extends SwipeRefreshLayout {
 
   @Override
   public boolean canChildScrollUp() {
-    ViewGroup target = (ViewGroup) getChildAt(0);
-    // check if adapter view is visible
-    View scrollableView = target.getChildAt(1);
-    if (scrollableView.getVisibility() == GONE) {
-      // use empty view layout instead
-      scrollableView = target.getChildAt(0);
-    }
+    try {
+      ViewGroup target = (ViewGroup) getChildAt(0);
+      // check if adapter view is visible
+      View scrollableView = target.getChildAt(1);
+      if (scrollableView != null && scrollableView.getVisibility() == GONE) {
+        // use empty view layout instead
+        scrollableView = target.getChildAt(0);
+      }
 
-    return ViewCompat.canScrollVertically(scrollableView, -1);
+      return ViewCompat.canScrollVertically(scrollableView, -1);
+    } catch(Exception ex)
+    {
+      return false;
+    }
   }
 }

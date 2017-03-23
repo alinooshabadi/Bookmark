@@ -22,6 +22,7 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.novler.quotes.BaseApp;
+import com.novler.quotes.ExportInstagramActivity;
 import com.novler.quotes.R;
 import com.novler.quotes.models.QuoteListData;
 import com.novler.quotes.models.ResponseData;
@@ -32,7 +33,7 @@ import com.novler.quotes.ui.home.BaseView;
 import com.novler.quotes.ui.quote.QuotesAdapter;
 import com.novler.quotes.util.FontUtil;
 import com.novler.quotes.util.ShareUtil;
-import com.novler.quotes.util.Util;
+import com.novler.quotes.util.Utils;
 
 import javax.inject.Inject;
 
@@ -44,6 +45,7 @@ import jp.wasabeef.glide.transformations.ColorFilterTransformation;
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 import static com.novler.quotes.R.id.link;
+import static com.novler.quotes.R.id.share;
 
 public class NovelActivity extends BaseApp implements BaseView {
   @Inject
@@ -209,8 +211,15 @@ public class NovelActivity extends BaseApp implements BaseView {
 
   @OnClick(link)
   void openWeb() {
-    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mNovelUrl));
-    startActivity(browserIntent);
+    if (mNovelUrl.hashCode() != "".hashCode()) {
+      Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mNovelUrl));
+      startActivity(browserIntent);
+    }
+  }
+
+  @OnClick(share)
+  void shareLink() {
+    ShareUtil.intentMessage(this, mNovelUrl);
   }
 
   @Override public void getListSuccess(ResponseData listResponse) {
@@ -219,7 +228,7 @@ public class NovelActivity extends BaseApp implements BaseView {
         @Override
         public void onClick(QuoteListData Item, View view) {
           if (view.getId() == R.id.shareTelegram) {
-            String telegramText = Util.clearText(Item.getText()
+            String telegramText = Utils.clearText(Item.getText()
               + "\r\n" + "\r\n" +
               Item.getNovel()
               + "\r\n"
@@ -230,7 +239,15 @@ public class NovelActivity extends BaseApp implements BaseView {
 
             ShareUtil.intentMessage(NovelActivity.this, telegramText);
           }
-          ;
+          else if (view.getId() == R.id.shareInsta) {
+            Intent intent = new Intent(NovelActivity.this, ExportInstagramActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("title", Item.getNovel());
+            bundle.putString("author", Item.getAuthor());
+            bundle.putString("text", Utils.clearText(Item.getText()));
+            intent.putExtras(bundle);
+            startActivity(intent);
+          };
         }
       });
 
@@ -240,7 +257,7 @@ public class NovelActivity extends BaseApp implements BaseView {
     else
       tvTranslator.setVisibility(View.GONE);
     tvOriginalTitle.setText(listResponse.getNovel().getOriginalTitle());
-    tvRating.setText(Util.toPersianNumber(String.format("%.2f", listResponse.getNovel().getRate())));
+    tvRating.setText(Utils.toPersianNumber(String.format("%.2f", listResponse.getNovel().getRate())));
     tvRating.setTypeface(FontUtil.getTypeface(getApplicationContext(), FontUtil.FontType.IranSansBold));
     tvPublisher.setText("ناشر: " + listResponse.getNovel().getPublisher());
     tvAuthor.setText(listResponse.getNovel().getAuthor());
@@ -292,7 +309,7 @@ public class NovelActivity extends BaseApp implements BaseView {
     client.disconnect();
   }
 
-  public void getIntents() {
+  private void getIntents() {
     Bundle b = getIntent().getExtras();
 
     if (b != null) {

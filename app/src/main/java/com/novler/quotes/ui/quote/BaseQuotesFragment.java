@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.novler.quotes.BookmarkApplication;
 import com.novler.quotes.ExportInstagramActivity;
 import com.novler.quotes.R;
 import com.novler.quotes.models.QuoteListData;
@@ -21,7 +22,7 @@ import com.novler.quotes.models.ResponseData;
 import com.novler.quotes.ui.home.BaseView;
 import com.novler.quotes.ui.novel.NovelActivity;
 import com.novler.quotes.util.ShareUtil;
-import com.novler.quotes.util.Util;
+import com.novler.quotes.util.Utils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,8 +44,6 @@ public class BaseQuotesFragment extends Fragment implements BaseView {
     getItems();
   }
 
-
-
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -60,7 +59,6 @@ public class BaseQuotesFragment extends Fragment implements BaseView {
       R.color.lineBlue,
       R.color.lineOrange,
       R.color.linePurple);
-
 
     return view;
   }
@@ -89,32 +87,33 @@ public class BaseQuotesFragment extends Fragment implements BaseView {
 
   @Override
   public void getListSuccess(ResponseData listResponse) {
+    final BookmarkApplication mApp = ((BookmarkApplication)getActivity().getApplicationContext());
     QuotesAdapter adapter = new QuotesAdapter(getActivity(), getActivity().getApplicationContext(), listResponse.getQuotes(),
       new QuotesAdapter.OnItemClickListener() {
         @Override
         public void onClick(QuoteListData Item, View view) {
           if (view.getId() == R.id.shareTelegram) {
-            String telegramText = Util.clearText(Item.getText()
+            String telegramText = Utils.clearText(Item.getText()
               + "\r\n" + "\r\n" +
               Item.getNovel()
               + "\r\n"
               + Item.getAuthor()
               + "\r\n"
-              +"@novler"
+              + "@novler"
+              + "\r\n"
+              + mApp.getLandingPageUrl()
             );
 
             ShareUtil.intentMessage(getActivity(), telegramText);
-          }
-          if (view.getId() == R.id.shareInsta) {
+          } else if (view.getId() == R.id.shareInsta) {
             Intent intent = new Intent(getActivity(), ExportInstagramActivity.class);
             Bundle bundle = new Bundle();
             bundle.putString("title", Item.getNovel());
             bundle.putString("author", Item.getAuthor());
-            bundle.putString("text", Util.clearText(Item.getText()));
+            bundle.putString("text", Utils.clearText(Item.getText()));
             intent.putExtras(bundle);
             startActivity(intent);
-          }
-          else {
+          } else {
             Intent intent = new Intent(getActivity(), NovelActivity.class);
             Pair<View, String> pair1 = Pair.create(view, "novel_title");
             Pair<View, String> pair2 = Pair.create(view, "novel_author");

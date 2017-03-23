@@ -5,7 +5,6 @@ import com.novler.quotes.BuildConfig;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
 
 import javax.inject.Singleton;
 
@@ -44,7 +43,7 @@ public class NetworkModule {
         public okhttp3.Response intercept(Chain chain) throws IOException {
           Request request = chain.request();
           // Customize the request
-          if (!Objects.equals(BaseApp.mNetworkStatus, "Not connected to Internet")) {
+          if (BaseApp.mNetworkStatus!= "Not connected to Internet") {
             request = request.newBuilder()
               .header("Content-Type", "application/json")
               .removeHeader("Pragma")

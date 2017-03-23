@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.novler.quotes.util.customLayout.EmptySwipeRefreshLayout android:id="@+id/swipeRefreshLayout"
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
-  android:layout_height="match_parent">
+  android:layout_height="match_parent"
+  android:orientation="vertical">
 
-  <RelativeLayout
+  <com.novler.quotes.util.customLayout.EmptySwipeRefreshLayout android:id="@+id/swipeRefreshLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <include
-      android:id="@+id/bottom_navigation"
-      layout="@layout/navigation_bottom" />
+    android:layout_height="match_parent">
 
     <FrameLayout
       android:layout_width="match_parent"
@@ -19,7 +15,7 @@
       android:layout_above="@id/bottom_navigation">
 
       <android.support.v7.widget.RecyclerView
-        android:id="@+id/list"
+        android:id="@+id/novels_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@null" />
@@ -47,10 +43,9 @@
         <ImageView
           android:layout_width="30dp"
           android:layout_height="30dp"
+          android:contentDescription="@null"
           android:src="@drawable/ic_disconnected" />
       </LinearLayout>
-
     </FrameLayout>
-
-  </RelativeLayout>
-</com.novler.quotes.util.customLayout.EmptySwipeRefreshLayout>
+  </com.novler.quotes.util.customLayout.EmptySwipeRefreshLayout>
+</RelativeLayout>

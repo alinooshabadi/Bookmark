@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout android:id="@+id/activity_export_instagram"
   xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:autofit="http://schemas.android.com/apk/res-auto"
+  xmlns:fancy="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
@@ -10,27 +12,29 @@
 
   <android.support.v7.widget.Toolbar
     android:id="@+id/toolbar"
+    style="@style/Base.ThemeOverlay.AppCompat.Dark"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentTop="true"
     android:background="?attr/colorPrimary"
     android:minHeight="?attr/actionBarSize"
-    >
+    app:theme="@style/ToolbarColoredBackArrow">
+
     <TextView
       android:id="@+id/titleBar"
       android:layout_width="wrap_content"
       android:layout_height="match_parent"
       android:textColor="@color/white"
       android:textSize="16sp" />
-    </android.support.v7.widget.Toolbar>
+  </android.support.v7.widget.Toolbar>
 
   <com.novler.quotes.util.customLayout.SquareLayout
-    android:layout_below="@id/toolbar"
-
     android:id="@+id/frame"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:layout_below="@id/toolbar"
     android:layout_gravity="center_horizontal"
+    android:layout_margin="10dp"
     android:background="#c0392b"
     android:orientation="vertical"
     android:padding="20dp">
@@ -55,12 +59,11 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_below="@+id/right_quote"
-      android:maxLines="8"
       android:paddingEnd="12dp"
       android:paddingStart="12dp"
       android:text="پیش از اینکه آتش جنگ لفظی شعله ور شود، هر دو کوتاه آمدیم؛ پی برده بودیم که ممکن است همدیگر را به گفتن چیزهایی واداریم که بعدا پشیمانی به بار آورد، چیزهایی که هرگز نتوان از خاطر زدود، حتی اگر پس از اینکه آرام شدیم، بارها عذرخواهی کنیم."
       android:textColor="@color/white"
-      android:textSize="16sp"
+      android:textSize="14sp"
       autofit:minTextSize="12sp" />
 
     <ImageView
@@ -100,32 +103,137 @@
       android:layout_marginEnd="40dp"
       android:text="کتاب"
       android:textColor="@color/white"
-
       android:textSize="14sp" />
 
+    <TextView
+      android:id="@+id/linkToNovler"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_above="@id/bottomLine"
+      android:text="novler.com"
+      android:textColor="@color/white"
+      android:textSize="10sp" />
 
     <ImageView
+      android:id="@+id/watermark"
       android:layout_width="40dp"
       android:layout_height="20dp"
-      android:layout_above="@id/bottomLine"
+      android:layout_above="@id/linkToNovler"
+
       android:src="@drawable/watermark"
       android:tint="@color/white" />
+
+
   </com.novler.quotes.util.customLayout.SquareLayout>
 
-  <Button
-    android:id="@+id/copyToClipboard"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:text="کپی به عنوان caption"
-    android:theme="@style/PrimaryButton" />
 
-  <Button
-    android:id="@+id/export"
-    android:layout_width="match_parent"
+  <com.novler.quotes.util.customLayout.FancyButton
+    android:id="@+id/btn_smaller"
+    android:layout_width="32dp"
+    android:layout_height="32dp"
+    android:layout_below="@id/frame"
+    android:layout_marginBottom="10dp"
+    android:layout_marginEnd="5dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="10dp"
+    fancy:fb_borderColor="@color/colorPrimary"
+    fancy:fb_borderWidth="2dp"
+    fancy:fb_defaultColor="#fff"
+    fancy:fb_focusColor="#313131"
+    fancy:fb_fontIconResource="&#xf031;"
+    fancy:fb_fontIconSize="10sp"
+    fancy:fb_radius="32dp"
+    fancy:fb_text=""
+    fancy:fb_textColor="@color/primary" />
+
+  <com.novler.quotes.util.customLayout.FancyButton
+    android:id="@+id/btn_bigger"
+    android:layout_width="32dp"
+    android:layout_height="32dp"
+    android:layout_below="@id/frame"
+    android:layout_marginBottom="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_toEndOf="@id/btn_smaller"
+    fancy:fb_borderColor="@color/colorPrimary"
+    fancy:fb_borderWidth="2dp"
+    fancy:fb_defaultColor="#fff"
+    fancy:fb_focusColor="@color/colorPrimaryDark"
+    fancy:fb_fontIconResource="&#xf031;"
+    fancy:fb_fontIconSize="16sp"
+    fancy:fb_radius="32dp"
+    fancy:fb_text=""
+    fancy:fb_textColor="@color/colorPrimary" />
+
+  <LinearLayout
+    android:id="@+id/pallet"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_above="@id/copyToClipboard"
-    android:text="اشتراک‌گذاری عکس"
-    android:theme="@style/PrimaryButton" />
+    android:layout_alignParentEnd="true"
+    android:layout_below="@id/frame"
+    android:layout_margin="10dp"
+    android:orientation="horizontal">
+
+  </LinearLayout>
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentBottom="true"
+    android:layout_below="@id/btn_bigger"
+    android:layout_margin="10dp"
+    android:gravity="bottom"
+    android:orientation="horizontal"
+    android:weightSum="3">
+
+    <com.novler.quotes.util.customLayout.FancyButton
+      android:id="@+id/copyToClipboard"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_margin="2dp"
+      android:layout_weight="1"
+      android:gravity="center"
+      android:paddingBottom="10dp"
+      android:paddingLeft="10dp"
+      android:paddingRight="10dp"
+      android:paddingTop="10dp"
+      fancy:fb_borderColor="@color/primary"
+      fancy:fb_borderWidth="1dp"
+      fancy:fb_defaultColor="@color/white"
+      fancy:fb_focusColor="@color/colorPrimaryDark"
+      fancy:fb_fontIconResource="&#xf0ea;"
+      fancy:fb_fontIconSize="18sp"
+      fancy:fb_iconPaddingLeft="4dp"
+      fancy:fb_iconPosition="right"
+      fancy:fb_radius="30dp"
+      fancy:fb_text="ذخیره متن"
+      fancy:fb_textColor="@color/primary"
+      fancy:fb_textFont="IRANSansMobile.ttf"
+      fancy:fb_textSize="11sp" />
+
+    <com.novler.quotes.util.customLayout.FancyButton
+      android:id="@+id/shareToInstagram"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_margin="2dp"
+      android:layout_weight="2"
+      android:paddingBottom="10dp"
+      android:paddingLeft="20dp"
+      android:paddingRight="20dp"
+      android:paddingTop="10dp"
+      fancy:fb_borderColor="#FFFFFF"
+      fancy:fb_borderWidth="1dp"
+      fancy:fb_defaultColor="@color/colorPrimary"
+      fancy:fb_focusColor="@color/colorPrimaryDark"
+      fancy:fb_fontIconResource="&#xf16d;"
+      fancy:fb_fontIconSize="18sp"
+      fancy:fb_iconPaddingLeft="4dp"
+      fancy:fb_iconPosition="right"
+      fancy:fb_radius="30dp"
+      fancy:fb_text="اشتراک در اینستاگرام"
+      fancy:fb_textColor="#FFFFFF"
+      fancy:fb_textFont="IRANSansMobile.ttf"
+      fancy:fb_textSize="11sp" />
+
+  </LinearLayout>
 
 </RelativeLayout>

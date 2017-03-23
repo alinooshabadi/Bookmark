@@ -39,7 +39,7 @@ public class FeaturedAuthorsActivity extends BaseHomeApp implements BaseView {
     super.onCreate(savedInstanceState);
     getDeps().inject(this);
 
-    renderView();
+    renderView(savedInstanceState);
     init();
 
     swipeRefreshLayout.setColorSchemeResources(R.color.lineRed,
@@ -71,9 +71,10 @@ public class FeaturedAuthorsActivity extends BaseHomeApp implements BaseView {
 
 
   @Override
-  public void renderView() {
+  public void renderView(final Bundle savedInstanceState) {
+    //overridePendingTransition(R.anim.fadein, R.anim.fadeout);
     setContentView(R.layout.activity_featured_novels);
-    super.renderView();
+    super.renderView(savedInstanceState);
     LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
     list.setLayoutManager(mLayoutManager);
   }

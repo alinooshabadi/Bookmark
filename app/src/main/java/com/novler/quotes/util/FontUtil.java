@@ -36,12 +36,7 @@ public class FontUtil {
         }
         typeFace = mIranBoldFont;
       }
-      else if (typefaceName.equals(FontType.Yekan.toString())) {
-        if (mYekan == null) {
-          mYekan = Typeface.createFromAsset(context.getAssets(), typefaceName);
-        }
-        typeFace = mYekan;
-      }
+
     } catch (Exception ex) {
       typeFace = Typeface.DEFAULT;
     }
@@ -49,9 +44,6 @@ public class FontUtil {
     return typeFace;
   }
 
-  /**
-   * @return Typeface Instance with the font passed as parameter
-   */
   public static Typeface getTypeface(Context context, FontType typefaceName) {
     return getTypeface(context, typefaceName.toString());
   }
@@ -66,7 +58,7 @@ public class FontUtil {
 
     IranSansLight {
       public String toString() {
-        return "fonts/IRANSansMobile_Light.ttf";
+        return "fonts/IRANSansMobile.ttf";
       }
     },
 
@@ -76,10 +68,6 @@ public class FontUtil {
       }
     },
 
-    Yekan {
-      public String toString() {
-        return "fonts/Yekan.ttf";
-      }
-    }
+
   }
 }

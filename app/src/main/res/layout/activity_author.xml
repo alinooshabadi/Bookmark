@@ -83,7 +83,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center"
-                android:layout_weight="2"
                 android:gravity="start"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
@@ -115,8 +114,7 @@
             android:layout_gravity="end"
             android:layout_margin="5dp"
             android:paddingTop="15dp"
-            android:src="@drawable/author_placeholder"
-            android:transitionName="novel_cover" />
+            android:src="@drawable/author_placeholder" />
         </LinearLayout>
 
         <com.ms.square.android.expandabletextview.ExpandableTextView android:id="@+id/author_bio"
@@ -143,7 +141,7 @@
             android:id="@id/expand_collapse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right|bottom"
+            android:layout_gravity="end|bottom"
             android:background="@android:color/transparent"
             android:padding="16dp" />
         </com.ms.square.android.expandabletextview.ExpandableTextView>
@@ -177,12 +175,26 @@
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:layout_gravity="end"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="15dp"
             android:backgroundTint="@color/white"
-            android:paddingEnd="15dp"
-            android:paddingStart="15dp"
+            android:contentDescription="@null"
             android:src="@drawable/ic_link"
-            tools:ignore="UnusedAttribute"
-            android:contentDescription="@null" />
+            android:tint="@color/white"
+            tools:ignore="UnusedAttribute" />
+
+          <ImageView
+            android:id="@+id/share"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_toStartOf="@id/link"
+            android:backgroundTint="@color/white"
+            android:contentDescription="@null"
+            android:padding="2dp"
+            android:src="@drawable/ic_action_share"
+            android:tint="@color/white"
+            tools:ignore="UnusedAttribute" />
+
         </RelativeLayout>
       </android.support.v7.widget.Toolbar>
     </android.support.design.widget.CollapsingToolbarLayout>

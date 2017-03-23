@@ -1,22 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto">
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layoutDirection="rtl"
+  app:bbn_alwaysShowLabels="false"
+  app:bbn_itemColorActive="@color/primary"
+  app:bbn_rippleColor="@color/darkWhite">
+
+
   <item
     android:id="@+id/action_authors"
+    android:layout_gravity="end"
     android:enabled="true"
+    android:gravity="end"
     android:icon="@drawable/ic_author"
     android:title="@string/text_authors"
     app:showAsAction="ifRoom" />
+
   <item
     android:id="@+id/action_novels"
+    android:layout_gravity="end"
     android:enabled="true"
+    android:gravity="end"
     android:icon="@drawable/ic_novel"
     android:title="@string/text_novels"
     app:showAsAction="ifRoom" />
 
+
   <item
     android:id="@+id/action_quotes"
+    android:layout_gravity="end"
     android:enabled="true"
+    android:gravity="end"
     android:icon="@drawable/ic_quote"
     android:title="@string/text_quotes"
     app:showAsAction="ifRoom" />

@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.widget.Toast;
+
+import java.io.File;
 
 /**
  * Created by P on 2/23/2017.
@@ -25,13 +28,29 @@ public class ShareUtil {
     }
   }
 
-  public static void intentMessage(Activity activity, String msg)
-  {
+  public static void intentMessage(Activity activity, String msg) {
     Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
     sharingIntent.setType("text/plain");
-    sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
     sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, msg);
-    activity.startActivity(Intent.createChooser(sharingIntent, "Share with"));
+    activity.startActivity(Intent.createChooser(sharingIntent, "اشتراک با ..."));
+  }
+
+  public static void createInstagramIntent(Activity activity, String type, String mediaPath) {
+    // Create the new Intent using the 'Send' action.
+    Intent share = new Intent(Intent.ACTION_SEND);
+
+    // Set the MIME type
+    share.setType(type);
+
+    // Create the URI from the media
+    File media = new File(mediaPath);
+    Uri uri = Uri.fromFile(media);
+
+    // Add the URI to the Intent.
+    share.putExtra(Intent.EXTRA_STREAM, uri);
+
+    // Broadcast the Intent.
+    activity.startActivity(Intent.createChooser(share, "Share to"));
   }
 
   private static boolean isAppAvailable(Context context, String appName) {
@@ -43,4 +62,5 @@ public class ShareUtil {
       return false;
     }
   }
+
 }

@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 import com.novler.quotes.BaseApp;
+import com.novler.quotes.ExportInstagramActivity;
 import com.novler.quotes.R;
 import com.novler.quotes.models.AuthorData;
 import com.novler.quotes.models.QuoteListData;
@@ -32,9 +33,7 @@ import com.novler.quotes.ui.novel.NovelActivity;
 import com.novler.quotes.ui.quote.QuotesAdapter;
 import com.novler.quotes.util.FontUtil;
 import com.novler.quotes.util.ShareUtil;
-import com.novler.quotes.util.Util;
-
-import java.util.Objects;
+import com.novler.quotes.util.Utils;
 
 import javax.inject.Inject;
 
@@ -46,6 +45,7 @@ import jp.wasabeef.glide.transformations.ColorFilterTransformation;
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 import static com.novler.quotes.R.id.link;
+import static com.novler.quotes.R.id.share;
 
 public class AuthorActivity extends BaseApp implements BaseView {
   @Inject
@@ -195,8 +195,15 @@ public class AuthorActivity extends BaseApp implements BaseView {
 
   @OnClick(link)
   void openWeb() {
-    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mUrl));
-    startActivity(browserIntent);
+    if (mUrl.hashCode() != "".hashCode()) {
+      Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mUrl));
+      startActivity(browserIntent);
+    }
+  }
+
+  @OnClick(share)
+  void shareLink() {
+    ShareUtil.intentMessage(this, mUrl);
   }
 
   @Override public void getListSuccess(ResponseData listResponse) {
@@ -205,7 +212,7 @@ public class AuthorActivity extends BaseApp implements BaseView {
         @Override
         public void onClick(QuoteListData Item, View view) {
           if (view.getId() == R.id.shareTelegram) {
-            String telegramText = Util.clearText(Item.getText()
+            String telegramText = Utils.clearText(Item.getText()
               + "\r\n" + "\r\n" +
               Item.getNovel()
               + "\r\n"
@@ -215,6 +222,14 @@ public class AuthorActivity extends BaseApp implements BaseView {
             );
 
             ShareUtil.intentMessage(AuthorActivity.this, telegramText);
+          } else if (view.getId() == R.id.shareInsta) {
+            Intent intent = new Intent(AuthorActivity.this, ExportInstagramActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("title", Item.getNovel());
+            bundle.putString("author", Item.getAuthor());
+            bundle.putString("text", Utils.clearText(Item.getText()));
+            intent.putExtras(bundle);
+            startActivity(intent);
           } else {
             Intent intent = new Intent(AuthorActivity.this, NovelActivity.class);
             Pair<View, String> pair1 = Pair.create(view, "novel_title");
@@ -232,6 +247,7 @@ public class AuthorActivity extends BaseApp implements BaseView {
             intent.putExtras(bundle);
             startActivity(intent, options.toBundle());
           }
+
           ;
         }
       });
@@ -242,9 +258,9 @@ public class AuthorActivity extends BaseApp implements BaseView {
     tvTitle.setText(author.getTitle());
     tvBio.setText(author.getBio());
     mUrl = author.getUrl();
-    if (!Objects.equals(author.getBirthDate(), "1"))
+    if (author.getBirthDate().hashCode() != "1".hashCode())
       tvBirthDate.setText(author.getBirthDate());
-    if (!Objects.equals(author.getDeathDate(), "1"))
+    if (author.getDeathDate().hashCode() != "1".hashCode())
       tvDeathDate.setText("-" + author.getDeathDate());
     mCoverUrl = author.getImageUrl();
     Glide.with(getApplicationContext()).load(mCoverUrl)
