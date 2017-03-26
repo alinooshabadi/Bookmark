@@ -43,7 +43,7 @@ public class ExportInstagramActivity extends BaseApp {
 
   String mText, mAuthor, mNovel;
   float mTextSize = 14;
-  ArrayList<String> colors = new ArrayList<String>();
+  ArrayList<String> colors = new ArrayList<>();
 
   @BindView(frame)
   SquareLayout frmMain;
@@ -91,14 +91,12 @@ public class ExportInstagramActivity extends BaseApp {
         // app-defined int constant. The callback method gets the
         // result of the request.
       }
-    }
-    else
+    } else
       saveAndExportImage();
 
   }
 
-  void saveAndExportImage()
-  {
+  void saveAndExportImage() {
     Bitmap bitmap = getBitmapFromView(frmMain);
 
     File pictureFileDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "Bookmark");
@@ -109,17 +107,18 @@ public class ExportInstagramActivity extends BaseApp {
     File pictureFile = new File(filename);
 
     try {
-      pictureFileDir.mkdir();
-      boolean f = pictureFile.createNewFile();
-      FileOutputStream oStream = new FileOutputStream(pictureFile);
-      bitmap.compress(Bitmap.CompressFormat.JPEG, 100, oStream);
-      oStream.flush();
-      oStream.close();
+      if (pictureFileDir.mkdir())
+        if (pictureFile.createNewFile()) {
+          FileOutputStream oStream = new FileOutputStream(pictureFile);
+          bitmap.compress(Bitmap.CompressFormat.JPEG, 100, oStream);
+          oStream.flush();
+          oStream.close();
 
-      frmMain.setDrawingCacheEnabled(false); // clear drawing cache
+          frmMain.setDrawingCacheEnabled(false); // clear drawing cache
 
-      String type = "image/*";
-      ShareUtil.createInstagramIntent(this, type, filename);
+          String type = "image/*";
+          ShareUtil.createInstagramIntent(this, type, filename);
+        }
     } catch (Exception e) {
       e.printStackTrace();
       Toast.makeText(this, "There was an issue saving the image.", Toast.LENGTH_SHORT).show();
@@ -134,24 +133,16 @@ public class ExportInstagramActivity extends BaseApp {
         // If request is cancelled, the result arrays are empty.
         if (grantResults.length > 0
           && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
           saveAndExportImage();
-
-        } else {
-
-          // permission denied, boo! Disable the
-          // functionality that depends on this permission.
         }
-        return;
       }
-
       // other 'case' lines to check for other
       // permissions this app might request
     }
   }
 
   @OnClick(copyToClipboard)
-  void copyToClipboard(View view) {
+  void copyToClipboard() {
     String copiedText = Utils.clearText(mText
       + "\r\n" + "\r\n"
       + mNovel
@@ -167,7 +158,7 @@ public class ExportInstagramActivity extends BaseApp {
   }
 
   @OnClick(R.id.btn_bigger)
-  void biggrText(View view) {
+  void biggerText() {
     btnSmallerText.setEnabled(true);
     if (mTextSize < 20) {
       mTextSize = mTextSize + 1;
@@ -177,7 +168,7 @@ public class ExportInstagramActivity extends BaseApp {
   }
 
   @OnClick(R.id.btn_smaller)
-  void smallerText(View view) {
+  void smallerText() {
     btnBiggerText.setEnabled(true);
     if (mTextSize > 12) {
       mTextSize = mTextSize - 1;
@@ -220,8 +211,6 @@ public class ExportInstagramActivity extends BaseApp {
     tvNovel.setText(mNovel);
     tvNovel.setTypeface(FontUtil.getTypeface(getApplicationContext(), FontUtil.FontType.IranSansBold));
     tvAuthor.setTypeface(FontUtil.getTypeface(getApplicationContext(), FontUtil.FontType.IranSansBold));
-
-    //AutofitHelper.create(tvText);
 
     String alpha = "#FF";
     colors.add(alpha + "d32f2f");
@@ -268,8 +257,10 @@ public class ExportInstagramActivity extends BaseApp {
     tvTitleBar.setText(mNovel);
     toolbar.setTitle("");
     setSupportActionBar(toolbar);
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    getSupportActionBar().setDisplayShowHomeEnabled(true);
+    if (getSupportActionBar() != null) {
+      getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+      getSupportActionBar().setDisplayShowHomeEnabled(true);
+    }
     if (Build.VERSION.SDK_INT > 17)
       toolbar.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
 

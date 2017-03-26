@@ -25,15 +25,13 @@ import jp.wasabeef.glide.transformations.BlurTransformation;
 import jp.wasabeef.glide.transformations.ColorFilterTransformation;
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
-public class AuthorsAdapter extends RecyclerView.Adapter<AuthorsAdapter.ViewHolder> {
+class AuthorsAdapter extends RecyclerView.Adapter<AuthorsAdapter.ViewHolder> {
   private final OnItemClickListener listener;
   private List<AuthorData> data;
   private Context context;
-  private Activity activity;
 
-  public AuthorsAdapter(Activity activity, Context context, List<AuthorData> data, OnItemClickListener listener) {
+  AuthorsAdapter(Activity activity, Context context, List<AuthorData> data, OnItemClickListener listener) {
     this.data = data;
-    this.activity = activity;
     this.listener = listener;
     this.context = context;
   }
@@ -61,7 +59,7 @@ public class AuthorsAdapter extends RecyclerView.Adapter<AuthorsAdapter.ViewHold
     holder.itemView.startAnimation(animation);
     lastPosition = position;*/
 
-    ArrayList<String> colors = new ArrayList<String>();
+    ArrayList<String> colors = new ArrayList<>();
     String alpha = "#F2";
 
     colors.add(alpha+ "A3A948");

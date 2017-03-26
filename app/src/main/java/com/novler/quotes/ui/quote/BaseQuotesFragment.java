@@ -115,7 +115,7 @@ public class BaseQuotesFragment extends Fragment implements BaseView {
             Pair<View, String> pair1 = Pair.create(view, "novel_title");
             Pair<View, String> pair2 = Pair.create(view, "novel_author");
             Pair<View, String> pair3 = Pair.create(view, "novel_cover");
-            ActivityOptionsCompat options = ActivityOptionsCompat.
+            @SuppressWarnings("unchecked") ActivityOptionsCompat options = ActivityOptionsCompat.
               makeSceneTransitionAnimation(getActivity(), pair1, pair2, pair3);
 
             Bundle bundle = new Bundle();

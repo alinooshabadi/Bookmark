@@ -1,14 +1,10 @@
 package com.novler.quotes.ui.quote;
 
-
 import android.support.v4.widget.SwipeRefreshLayout;
 
-import com.novler.quotes.ui.home.HomeActivity;
 import com.novler.quotes.presenter.HomePresenter;
+import com.novler.quotes.ui.home.HomeActivity;
 
-/**
- * Created by P on 2/21/2017.
- */
 
 public class QuotesRandomFragment extends BaseQuotesFragment {
   @Override

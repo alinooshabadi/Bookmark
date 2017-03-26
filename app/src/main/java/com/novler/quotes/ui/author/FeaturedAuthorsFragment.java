@@ -79,18 +79,25 @@ public class FeaturedAuthorsFragment extends Fragment implements BaseView {
   @Override
   public void showWait() {
     swipeRefreshLayout.setRefreshing(true);
-    tvReload.setVisibility(View.GONE);
+
+    if (tvReload != null) {
+      tvReload.setVisibility(View.GONE);
+    }
   }
 
   @Override
   public void removeWait() {
     swipeRefreshLayout.setRefreshing(false);
-    tvReload.setVisibility(View.GONE);
+    if (tvReload != null) {
+      tvReload.setVisibility(View.GONE);
+    }
   }
 
   @Override
   public void onFailure(String appErrorMessage) {
-    tvReload.setVisibility(View.VISIBLE);
+    if (tvReload != null) {
+      tvReload.setVisibility(View.VISIBLE);
+    }
   }
 
   @Override public void getListSuccess(ResponseData listResponse) {
@@ -102,7 +109,7 @@ public class FeaturedAuthorsFragment extends Fragment implements BaseView {
           Pair<View, String> pair1 = Pair.create(view, "novel_title");
           Pair<View, String> pair2 = Pair.create(view, "novel_author");
           Pair<View, String> pair3 = Pair.create(view, "novel_cover");
-          ActivityOptionsCompat options = ActivityOptionsCompat.
+          @SuppressWarnings("unchecked") ActivityOptionsCompat options = ActivityOptionsCompat.
             makeSceneTransitionAnimation(getActivity(), pair1, pair2, pair3);
 
           Bundle bundle = new Bundle();

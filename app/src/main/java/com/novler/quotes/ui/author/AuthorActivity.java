@@ -111,8 +111,6 @@ public class AuthorActivity extends BaseApp implements BaseView {
         if (scrollRange + verticalOffset < 0) {
           tvTitleBar.setText(mTitle);
           ivCover.setVisibility(View.INVISIBLE);
-          /*tvExpand.setVisibility(View.INVISIBLE);
-          ivExpand.setVisibility(View.INVISIBLE);*/
           toolbar.setBackgroundColor(getResources().getColor(R.color.primary));
           isShow = true;
         } else if (isShow) {
@@ -167,7 +165,8 @@ public class AuthorActivity extends BaseApp implements BaseView {
 
   void SetToolbar() {
     setSupportActionBar(toolbar);
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    if (getSupportActionBar() != null)
+      getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setDisplayShowHomeEnabled(true);
     if (Build.VERSION.SDK_INT > 17)
       toolbar.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
@@ -235,7 +234,7 @@ public class AuthorActivity extends BaseApp implements BaseView {
             Pair<View, String> pair1 = Pair.create(view, "novel_title");
             Pair<View, String> pair2 = Pair.create(view, "novel_author");
             Pair<View, String> pair3 = Pair.create(view, "novel_cover");
-            ActivityOptionsCompat options = ActivityOptionsCompat.
+            @SuppressWarnings("unchecked") ActivityOptionsCompat options = ActivityOptionsCompat.
               makeSceneTransitionAnimation(AuthorActivity.this, pair1, pair2, pair3);
 
             Bundle bundle = new Bundle();
@@ -248,7 +247,6 @@ public class AuthorActivity extends BaseApp implements BaseView {
             startActivity(intent, options.toBundle());
           }
 
-          ;
         }
       });
 

@@ -2,11 +2,9 @@ package com.novler.quotes;
 
 import android.app.Application;
 
-/**
- * Created by P on 3/15/2017.
- */
-
 public class BookmarkApplication extends Application {
+  String mLandingPageUrl = "https://cafebazaar.ir/app/com.novler.quotes/";
+
   public String getLandingPageUrl() {
     return mLandingPageUrl;
   }
@@ -14,7 +12,5 @@ public class BookmarkApplication extends Application {
   public void setLandingPageUrl(String mLandingPageUrl) {
     this.mLandingPageUrl = mLandingPageUrl;
   }
-
-  String mLandingPageUrl = "https://cafebazaar.ir/app/com.novler.quotes/";
 
 }
