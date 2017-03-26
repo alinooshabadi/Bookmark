@@ -11,7 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.novler.quotes.R;
 import com.novler.quotes.models.NovelData;
@@ -26,13 +26,10 @@ import butterknife.OnClick;
 
 import static io.fabric.sdk.android.services.concurrency.AsyncTask.init;
 
-/**
- * Created by P on 3/14/2017.
- */
 
 public class FeaturedNovelsFragment extends Fragment implements BaseView {
   @BindView(R.id.reload)
-  LinearLayout reload;
+  TextView tvReload;
   @BindView(R.id.novels_list)
   RecyclerView list;
   @BindView(R.id.swipeRefreshLayout)
@@ -81,18 +78,18 @@ public class FeaturedNovelsFragment extends Fragment implements BaseView {
   @Override
   public void showWait() {
     swipeRefreshLayout.setRefreshing(true);
-    reload.setVisibility(View.GONE);
+    tvReload.setVisibility(View.GONE);
   }
 
   @Override
   public void removeWait() {
     swipeRefreshLayout.setRefreshing(false);
-    reload.setVisibility(View.GONE);
+    tvReload.setVisibility(View.GONE);
   }
 
   @Override
   public void onFailure(String appErrorMessage) {
-    reload.setVisibility(View.VISIBLE);
+    tvReload.setVisibility(View.VISIBLE);
     //Snackbar.make(list, appErrorMessage, Snackbar.LENGTH_INDEFINITE).show();
   }
 

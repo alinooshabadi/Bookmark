@@ -4,8 +4,7 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent">
 
-  <FrameLayout
-
+  <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -15,33 +14,10 @@
       android:layout_height="match_parent"
       android:divider="@null" />
 
-
-    <LinearLayout
+    <include
       android:id="@+id/reload"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_gravity="center_horizontal"
-      android:gravity="center"
-      android:textAlignment="center"
-      android:orientation="vertical"
-      >
+      layout="@layout/reload" />
 
-      <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ارتباط با سرور برقرار نیست :( \r\n دوباره تلاش کنید"
-        android:layout_marginBottom="8dp"
-        android:textColor="@color/colorPrimary"
-        android:textAlignment="center"
-        android:gravity="center"
-        android:textSize="16sp"  />
-
-      <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_disconnected" />
-    </LinearLayout>
-
-  </FrameLayout>
+  </RelativeLayout>
 
 </com.novler.quotes.util.customLayout.EmptySwipeRefreshLayout>

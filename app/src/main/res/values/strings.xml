@@ -4,4 +4,5 @@
   <string name="text_novels">رمان‌ها</string>
   <string name="text_authors">نویسنده‌ها</string>
   <string name="title_activity_novel">Bookmark</string>
+  <string name="no_internet">خطا در اتصال به اینترنت</string>
 </resources>

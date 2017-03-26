@@ -12,7 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.novler.quotes.R;
 import com.novler.quotes.models.AuthorData;
@@ -34,7 +34,7 @@ public class FeaturedAuthorsFragment extends Fragment implements BaseView {
 
   @Nullable
   @BindView(R.id.reload)
-  LinearLayout reload;
+  TextView tvReload;
   @BindView(R.id.authors_list)
   RecyclerView list;
   @BindView(R.id.swipeRefreshLayout)
@@ -79,18 +79,18 @@ public class FeaturedAuthorsFragment extends Fragment implements BaseView {
   @Override
   public void showWait() {
     swipeRefreshLayout.setRefreshing(true);
-    reload.setVisibility(View.GONE);
+    tvReload.setVisibility(View.GONE);
   }
 
   @Override
   public void removeWait() {
     swipeRefreshLayout.setRefreshing(false);
-    reload.setVisibility(View.GONE);
+    tvReload.setVisibility(View.GONE);
   }
 
   @Override
   public void onFailure(String appErrorMessage) {
-    reload.setVisibility(View.VISIBLE);
+    tvReload.setVisibility(View.VISIBLE);
   }
 
   @Override public void getListSuccess(ResponseData listResponse) {

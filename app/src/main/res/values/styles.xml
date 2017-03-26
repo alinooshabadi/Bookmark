@@ -1,7 +1,6 @@
 <resources>
   <!-- Base application theme. -->
   <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-    <!-- Customize your theme here. -->
     <item name="colorPrimary">@color/colorPrimary</item>
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     <item name="colorAccent">@color/colorAccent</item>
@@ -9,6 +8,7 @@
     <item name="actionButtonStyle">@style/myActionButtonStyle</item>
 
   </style>
+
   <style name="PrimaryButton" parent="Theme.AppCompat">
     <item name="colorButtonNormal">@color/flatGreen</item>
     <item name="colorControlHighlight">@color/flatGreenHighlight</item>
@@ -16,10 +16,10 @@
 
 
   <style name="myActionButtonStyle" parent="Widget.AppCompat.ActionButton">
-    <item name="android:minWidth">30dp</item>
+    <!--<item name="android:minWidth">30dp</item>
     <item name="android:maxWidth">48dp</item>
     <item name="android:paddingLeft">2dp</item>
-    <item name="android:width">38dp</item>
+    <item name="android:width">38dp</item>-->
   </style>
 
   <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.ActionBar" />
@@ -31,7 +31,6 @@
   </style>
 
   <style name="ToolbarTitleTextAppearance" parent="android:TextAppearance">
-    <item name="android:textColor">@android:color/holo_red_dark</item>
     <item name="android:textSize">22sp</item>
     <item name="fontPath">fonts/IRANSansMobile.ttf</item>
   </style>

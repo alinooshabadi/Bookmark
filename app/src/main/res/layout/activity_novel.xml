@@ -65,8 +65,7 @@
             android:textColor="@color/white"
             android:textSize="10sp" />
 
-          <LinearLayout android:id="@+id/relative"
-            xmlns:android="http://schemas.android.com/apk/res/android"
+          <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_marginStart="15dp"

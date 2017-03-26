@@ -1,23 +1,15 @@
 package com.novler.quotes.ui.quote;
 
-import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.view.ViewGroup;
 
-/**
- * Created by P on 2/21/2017.
- */
-
 public class PagerAdapter extends FragmentPagerAdapter {
-  int mNumOfTabs;
+  private int mNumOfTabs;
 
-  private Context ctxt = null;
-
-  public PagerAdapter(Context ctxt, FragmentManager mgr, int NumOfTabs) {
+  public PagerAdapter(FragmentManager mgr, int NumOfTabs) {
     super(mgr);
-    this.ctxt = ctxt;
     this.mNumOfTabs = NumOfTabs;
   }
 
@@ -25,17 +17,13 @@ public class PagerAdapter extends FragmentPagerAdapter {
   public Fragment getItem(int position) {
     switch (position) {
       case 3:
-        QuotesTrendingFragment tab0 = new QuotesTrendingFragment();
-        return tab0;
+        return new QuotesTrendingFragment();
       case 0:
-        QuotesBestFragment tab1 = new QuotesBestFragment();
-        return tab1;
+        return new QuotesBestFragment();
       case 1:
-        QuotesRandomFragment tab2 = new QuotesRandomFragment();
-        return tab2;
+        return new QuotesRandomFragment();
       case 2:
-        QuotesNewFragment tab3 = new QuotesNewFragment();
-        return tab3;
+        return new QuotesNewFragment();
       default:
         return null;
     }

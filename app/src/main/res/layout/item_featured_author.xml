@@ -18,16 +18,16 @@
   <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
     android:orientation="horizontal"
+    android:padding="20dp"
     android:weightSum="1">
 
 
     <RelativeLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:layout_marginTop="20dp"
       android:layout_marginEnd="25dp"
+      android:layout_marginTop="20dp"
       android:layout_weight="1">
 
       <TextView
@@ -35,7 +35,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="end"
-        android:text="i am a hero"
         android:textAllCaps="true"
         android:textColor="@color/white"
         android:textSize="9dp" />
@@ -45,13 +44,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/novel_originalTitle"
-        android:text="زندگی در پسش رو"
         android:layout_marginTop="2dp"
-        android:transitionName="novel_title"
         android:textColor="@color/white"
-        android:textSize="18sp" />
-
-
+        android:textSize="18sp"
+        android:transitionName="novel_title" />
 
 
     </RelativeLayout>
@@ -61,8 +57,8 @@
       android:layout_width="80dp"
       android:layout_height="80dp"
       android:scaleType="fitCenter"
-      android:transitionName="novel_cover"
-      android:src="@drawable/author_placeholder" />
+      android:src="@drawable/author_placeholder"
+      android:transitionName="novel_cover" />
 
   </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>
