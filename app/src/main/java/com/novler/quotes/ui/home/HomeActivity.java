@@ -28,6 +28,10 @@ public class HomeActivity extends BaseHomeApp {
   public Service service;
   boolean doubleBackToExitPressedOnce = false;
 
+  MainFragment mainFragment = new MainFragment();
+  FeaturedAuthorsFragment featuredAuthorsFragment = new FeaturedAuthorsFragment();
+  FeaturedNovelsFragment featuredNovelsFragment = new FeaturedNovelsFragment();
+
   @BindView(R.id.snackBarParent)
   CoordinatorLayout snackBarParent;
   @BindView(R.id.layoutLinear)
@@ -72,7 +76,8 @@ public class HomeActivity extends BaseHomeApp {
     super.renderView(savedInstanceState);
     initializeBottomNavigation(savedInstanceState);
     if (savedInstanceState == null) {
-      getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new MainFragment()).commit();
+      if (getSupportFragmentManager().findFragmentByTag("mainFragment") == null)
+        getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer, mainFragment, "mainFragment").commit();
     }
   }
 
@@ -84,15 +89,28 @@ public class HomeActivity extends BaseHomeApp {
       public void onMenuItemSelect(final int itemId, final int position, final boolean fromUser) {
         switch (itemId) {
           case R.id.action_quotes: {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new MainFragment()).addToBackStack("main").commit();
-            break;
-          }
-          case R.id.action_authors: {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new FeaturedAuthorsFragment()).commit();
+            if (getSupportFragmentManager().findFragmentByTag("mainFragment") == null)
+              getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer, mainFragment, "mainFragment").commit();
+            getSupportFragmentManager().beginTransaction().hide(featuredAuthorsFragment).commit();
+            getSupportFragmentManager().beginTransaction().hide(featuredNovelsFragment).commit();
+            getSupportFragmentManager().beginTransaction().show(mainFragment).commit();
             break;
           }
           case R.id.action_novels: {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new FeaturedNovelsFragment()).commit();
+            if (getSupportFragmentManager().findFragmentByTag("featuredNovelsFragment") == null)
+              getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer, featuredNovelsFragment, "featuredNovelsFragment").commit();
+            //getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new FeaturedAuthorsFragment()).commit();
+            getSupportFragmentManager().beginTransaction().hide(featuredAuthorsFragment).commit();
+            getSupportFragmentManager().beginTransaction().hide(mainFragment).commit();
+            getSupportFragmentManager().beginTransaction().show(featuredNovelsFragment).commit();
+            break;
+          }
+          case R.id.action_authors: {
+            if (getSupportFragmentManager().findFragmentByTag("featuredAuthorsFragment") == null)
+              getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer, featuredAuthorsFragment, "featuredAuthorsFragment").commit();
+            getSupportFragmentManager().beginTransaction().hide(mainFragment).commit();
+            getSupportFragmentManager().beginTransaction().hide(featuredNovelsFragment).commit();
+            getSupportFragmentManager().beginTransaction().show(featuredAuthorsFragment).commit();
             break;
           }
         }

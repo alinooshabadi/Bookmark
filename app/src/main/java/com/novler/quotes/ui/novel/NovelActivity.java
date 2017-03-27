@@ -92,8 +92,7 @@ public class NovelActivity extends BaseApp implements BaseView {
   private GoogleApiClient client;
 
   @OnClick(R.id.novel_author)
-  void clickAuthor(View view)
-  {
+  void clickAuthor(View view) {
     Intent intent = new Intent(NovelActivity.this, AuthorActivity.class);
 
     Bundle bundle = new Bundle();
@@ -111,7 +110,6 @@ public class NovelActivity extends BaseApp implements BaseView {
     getIntents();
     renderView();
     init();
-
 
     mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
       boolean isShow = false;
@@ -171,7 +169,7 @@ public class NovelActivity extends BaseApp implements BaseView {
     if (mTitle != null)
       tvTitle.setText(mTitle);
 
-    if(mCoverUrl!=null)
+    if (mCoverUrl != null)
       Glide.with(getApplicationContext()).load(mCoverUrl)
         .bitmapTransform(new RoundedCornersTransformation(getApplicationContext(), 12, 5))
         .placeholder(R.drawable.novel_placeholder)
@@ -227,18 +225,9 @@ public class NovelActivity extends BaseApp implements BaseView {
       new QuotesAdapter.OnItemClickListener() {
         @Override
         public void onClick(QuoteListData Item, View view) {
-          if (view.getId() == R.id.shareTelegram) {
-            String telegramText = Utils.clearText(Item.getText()
-              + "\r\n" + "\r\n" +
-              Item.getNovel()
-              + "\r\n"
-              + Item.getAuthor()
-              + "\r\n"
-              + "@novler"
-            );
+          if (view.getId() == R.id.shareTelegram)
+            ShareUtil.ShareTextQuote(NovelActivity.this, Item.getText(), Item.getNovel(), Item.getAuthor());
 
-            ShareUtil.intentMessage(NovelActivity.this, telegramText);
-          }
           else if (view.getId() == R.id.shareInsta) {
             Intent intent = new Intent(NovelActivity.this, ExportInstagramActivity.class);
             Bundle bundle = new Bundle();
@@ -247,7 +236,7 @@ public class NovelActivity extends BaseApp implements BaseView {
             bundle.putString("text", Utils.clearText(Item.getText()));
             intent.putExtras(bundle);
             startActivity(intent);
-          };
+          }
         }
       });
 

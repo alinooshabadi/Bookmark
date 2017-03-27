@@ -7,11 +7,10 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.widget.Toast;
 
+import com.novler.quotes.BookmarkApplication;
+
 import java.io.File;
 
-/**
- * Created by P on 2/23/2017.
- */
 
 public class ShareUtil {
   public static void intentMessageTelegram(Activity activity, String msg) {
@@ -26,6 +25,21 @@ public class ShareUtil {
     } else {
       Toast.makeText(activity, "Telegram not Installed", Toast.LENGTH_SHORT).show();
     }
+  }
+
+  public static void ShareTextQuote(Activity activity, String quote, String novel, String author) {
+    String telegramText = Utils.clearText(quote
+      + "\r\n" + "\r\n" +
+      novel
+      + "\r\n"
+      + author
+      + "\r\n"
+      + "@novler"
+      + "\r\n"
+      + ((BookmarkApplication) activity.getApplication()).getLandingPageUrl()
+    );
+
+    intentMessage(activity, telegramText);
   }
 
   public static void intentMessage(Activity activity, String msg) {

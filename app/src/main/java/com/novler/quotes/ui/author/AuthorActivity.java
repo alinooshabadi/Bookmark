@@ -211,16 +211,8 @@ public class AuthorActivity extends BaseApp implements BaseView {
         @Override
         public void onClick(QuoteListData Item, View view) {
           if (view.getId() == R.id.shareTelegram) {
-            String telegramText = Utils.clearText(Item.getText()
-              + "\r\n" + "\r\n" +
-              Item.getNovel()
-              + "\r\n"
-              + Item.getAuthor()
-              + "\r\n"
-              + "@novler"
-            );
+            ShareUtil.ShareTextQuote(AuthorActivity.this, Item.getText(), Item.getNovel(), Item.getAuthor());
 
-            ShareUtil.intentMessage(AuthorActivity.this, telegramText);
           } else if (view.getId() == R.id.shareInsta) {
             Intent intent = new Intent(AuthorActivity.this, ExportInstagramActivity.class);
             Bundle bundle = new Bundle();

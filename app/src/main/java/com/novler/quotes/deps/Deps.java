@@ -2,8 +2,6 @@ package com.novler.quotes.deps;
 
 import com.novler.quotes.networking.NetworkModule;
 import com.novler.quotes.ui.author.AuthorActivity;
-import com.novler.quotes.ui.author.FeaturedAuthorsActivity;
-import com.novler.quotes.ui.novel.FeaturedNovelsActivity;
 import com.novler.quotes.ui.home.HomeActivity;
 import com.novler.quotes.ui.novel.NovelActivity;
 
@@ -17,6 +15,6 @@ public interface Deps {
   void inject(HomeActivity activity);
   void inject(NovelActivity activity);
   void inject(AuthorActivity activity);
-  void inject(FeaturedNovelsActivity activity);
-  void inject(FeaturedAuthorsActivity activity);
+  //void inject(FeaturedNovelsActivity activity);
+  //void inject(FeaturedAuthorsActivity activity);
 }

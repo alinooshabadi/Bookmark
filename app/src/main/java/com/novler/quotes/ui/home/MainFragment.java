@@ -36,7 +36,6 @@ public class MainFragment extends Fragment {
   @BindView(R.id.tab_layout)
   PersianTabLayout tabLayout;
 
-
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     setRetainInstance(true);
@@ -54,17 +53,14 @@ public class MainFragment extends Fragment {
     logo.setTypeface(mTypeface);
     logo.setText("بوکمارکـ");
 
-
-
     return view;
   }
 
   public void init() {
-
-
-    ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-    ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
-
+    if (((AppCompatActivity) getActivity()).getSupportActionBar() != null) {
+      ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+      ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
+    }
     tabLayout.addTab(tabLayout.newTab().setText("بهترین‌ها"));
     tabLayout.addTab(tabLayout.newTab().setText("تصادفی"));
     tabLayout.addTab(tabLayout.newTab().setText("جدید"));
@@ -94,12 +90,10 @@ public class MainFragment extends Fragment {
       }
     });
 
-
   }
 
   private PagerAdapter buildAdapter() {
-    return(new PagerAdapter(getActivity(), getChildFragmentManager(),tabLayout.getTabCount()));
+    return (new PagerAdapter(getChildFragmentManager(), tabLayout.getTabCount()));
   }
-
 
 }

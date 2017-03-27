@@ -79,30 +79,19 @@ public class BaseQuotesFragment extends Fragment implements BaseView {
   @Override
   public void onFailure(String appErrorMessage) {
     tvReload.setVisibility(View.VISIBLE);
-    //Snackbar.make(list, appErrorMessage, Snackbar.LENGTH_INDEFINITE).show();
   }
 
   @Override
   public void getListSuccess(ResponseData listResponse) {
-    final BookmarkApplication mApp = ((BookmarkApplication)getActivity().getApplicationContext());
+    final BookmarkApplication mApp = ((BookmarkApplication) getActivity().getApplicationContext());
     QuotesAdapter adapter = new QuotesAdapter(getActivity(), getActivity().getApplicationContext(), listResponse.getQuotes(),
       new QuotesAdapter.OnItemClickListener() {
         @Override
         public void onClick(QuoteListData Item, View view) {
-          if (view.getId() == R.id.shareTelegram) {
-            String telegramText = Utils.clearText(Item.getText()
-              + "\r\n" + "\r\n" +
-              Item.getNovel()
-              + "\r\n"
-              + Item.getAuthor()
-              + "\r\n"
-              + "@novler"
-              + "\r\n"
-              + mApp.getLandingPageUrl()
-            );
+          if (view.getId() == R.id.shareTelegram)
+            ShareUtil.ShareTextQuote(getActivity(), Item.getText(), Item.getNovel(), Item.getAuthor());
 
-            ShareUtil.intentMessage(getActivity(), telegramText);
-          } else if (view.getId() == R.id.shareInsta) {
+          else if (view.getId() == R.id.shareInsta) {
             Intent intent = new Intent(getActivity(), ExportInstagramActivity.class);
             Bundle bundle = new Bundle();
             bundle.putString("title", Item.getNovel());

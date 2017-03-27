@@ -93,7 +93,7 @@ public class ExportInstagramActivity extends BaseApp {
       }
     } else
       saveAndExportImage();
-
+    return;
   }
 
   void saveAndExportImage() {
@@ -107,8 +107,8 @@ public class ExportInstagramActivity extends BaseApp {
     File pictureFile = new File(filename);
 
     try {
-      if (pictureFileDir.mkdir())
-        if (pictureFile.createNewFile()) {
+
+      if (pictureFile.createNewFile()) {
           FileOutputStream oStream = new FileOutputStream(pictureFile);
           bitmap.compress(Bitmap.CompressFormat.JPEG, 100, oStream);
           oStream.flush();
