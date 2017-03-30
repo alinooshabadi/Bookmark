@@ -12,7 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 
 import com.novler.quotes.R;
 import com.novler.quotes.models.AuthorData;
@@ -34,7 +34,7 @@ public class FeaturedAuthorsFragment extends Fragment implements BaseView {
 
   @Nullable
   @BindView(R.id.reload)
-  TextView tvReload;
+  LinearLayout tvReload;
   @BindView(R.id.authors_list)
   RecyclerView list;
   @BindView(R.id.swipeRefreshLayout)
@@ -71,7 +71,7 @@ public class FeaturedAuthorsFragment extends Fragment implements BaseView {
 
   }
 
-  @OnClick(R.id.reload)
+  @OnClick(R.id.reloadButton)
   public void reloadList() {
     getItems();
   }

@@ -4,22 +4,23 @@
     <item name="colorPrimary">@color/colorPrimary</item>
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     <item name="colorAccent">@color/colorAccent</item>
-    <item name="android:actionButtonStyle">@style/myActionButtonStyle</item>
     <item name="actionButtonStyle">@style/myActionButtonStyle</item>
-
+    <item name="md_medium_font">IRANSansMobile.ttf</item>
+    <item name="md_regular_font">IRANSansMobile.ttf</item>
+    <item name="md_title_gravity">end</item>
+    <item name="android:actionMenuTextColor">@color/white</item>
+    <item name="actionMenuTextColor">@color/white</item>
+    <item name="android:textColorPrimary">@color/white</item>
+    <item name="android:textColorSecondary">@color/white</item>
   </style>
 
-  <style name="PrimaryButton" parent="Theme.AppCompat">
-    <item name="colorButtonNormal">@color/flatGreen</item>
-    <item name="colorControlHighlight">@color/flatGreenHighlight</item>
+  <style name="AppTheme.ActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+
   </style>
 
 
   <style name="myActionButtonStyle" parent="Widget.AppCompat.ActionButton">
-    <!--<item name="android:minWidth">30dp</item>
-    <item name="android:maxWidth">48dp</item>
-    <item name="android:paddingLeft">2dp</item>
-    <item name="android:width">38dp</item>-->
+
   </style>
 
   <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.ActionBar" />

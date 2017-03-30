@@ -66,10 +66,10 @@ dependencies {
     exclude group: 'com.android.support', module: 'support-annotations'
   })
   testCompile 'junit:junit:4.12'
-  compile 'com.android.support:appcompat-v7:25.2.0'
-  compile 'com.android.support:design:25.2.0'
-  compile 'com.android.support:recyclerview-v7:25.2.0'
-  compile 'com.android.support:cardview-v7:25.2.0'
+  compile 'com.android.support:appcompat-v7:25.3.0'
+  compile 'com.android.support:design:25.3.0'
+  compile 'com.android.support:recyclerview-v7:25.3.0'
+  compile 'com.android.support:cardview-v7:25.3.0'
   compile 'com.github.bumptech.glide:glide:3.7.0'
   provided 'org.glassfish:javax.annotation:10.0-b28'
 
@@ -81,7 +81,6 @@ dependencies {
   compile 'io.reactivex:rxandroid:1.2.1'
   compile 'io.reactivex:rxjava:1.1.6'
   compile 'uk.co.chrisjenx:calligraphy:2.2.0'
-
 
   compile 'com.jakewharton:butterknife:8.5.1'
   apt 'com.jakewharton:butterknife-compiler:8.5.1'
@@ -95,15 +94,21 @@ dependencies {
 
   compile 'com.github.gabrielemariotti.changeloglib:changelog:2.1.0'
 
-  //blur glide
+  //Glide Transformations
   compile 'jp.wasabeef:glide-transformations:2.0.1'
   compile 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.3.0'
 
+  //Expandable TextView
   compile 'com.ms-square:expandableTextView:0.1.4'
 
+  //Auto fit TextView
   compile 'me.grantland:autofittextview:0.2.1'
 
   compile 'it.sephiroth.android.library.bottomnavigation:bottom-navigation:2.0.1-rc1'
+
+  //Material Dialogs
+  compile 'com.afollestad.material-dialogs:core:0.9.4.2'
+  compile 'com.afollestad.material-dialogs:commons:0.9.4.2'
 
   compile files('libs/adad-client-3.1.jar')
 

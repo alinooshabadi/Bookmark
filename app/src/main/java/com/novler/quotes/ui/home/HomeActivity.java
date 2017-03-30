@@ -3,8 +3,8 @@ package com.novler.quotes.ui.home;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.IdRes;
-import android.support.design.widget.CoordinatorLayout;
-import android.view.Menu;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -31,9 +31,10 @@ public class HomeActivity extends BaseHomeApp {
   MainFragment mainFragment = new MainFragment();
   FeaturedAuthorsFragment featuredAuthorsFragment = new FeaturedAuthorsFragment();
   FeaturedNovelsFragment featuredNovelsFragment = new FeaturedNovelsFragment();
+  @Nullable
+  @BindView(R.id.toolbar)
+  Toolbar toolbar;
 
-  @BindView(R.id.snackBarParent)
-  CoordinatorLayout snackBarParent;
   @BindView(R.id.layoutLinear)
   RelativeLayout linearLayout;
 
@@ -46,6 +47,9 @@ public class HomeActivity extends BaseHomeApp {
     getDeps().inject(this);
 
     renderView(savedInstanceState);
+    setSupportActionBar(toolbar);
+
+
 
     AppUpdater appUpdater = new AppUpdater(this)
       .setUpdateFrom(UpdateFrom.JSON)
@@ -64,13 +68,6 @@ public class HomeActivity extends BaseHomeApp {
   }
 
   @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    // Inflate the menu; this adds items to the action bar if it is present.
-    getMenuInflater().inflate(R.menu.menu_main, menu);
-    return true;
-  }
-
-  @Override
   public void renderView(Bundle savedInstanceState) {
     setContentView(R.layout.activity_main);
     super.renderView(savedInstanceState);
@@ -82,7 +79,7 @@ public class HomeActivity extends BaseHomeApp {
   }
 
   protected void initializeBottomNavigation(final Bundle savedInstanceState) {
-    mBottomNav.setSelectedIndex(2,false);
+    mBottomNav.setSelectedIndex(2, false);
     mBottomNav.setDefaultTypeface(FontUtil.getTypeface(getApplicationContext(), FontUtil.FontType.IranSansLight));
     mBottomNav.setOnMenuItemClickListener(new BottomNavigation.OnMenuItemSelectionListener() {
       @Override

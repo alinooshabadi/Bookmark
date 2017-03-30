@@ -9,12 +9,16 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.novler.quotes.R;
 import com.novler.quotes.ui.quote.PagerAdapter;
+import com.novler.quotes.util.ShareUtil;
 import com.novler.quotes.util.customLayout.PersianTabLayout;
 
 import butterknife.BindView;
@@ -32,22 +36,23 @@ public class MainFragment extends Fragment {
   @Nullable
   @BindView(pager)
   ViewPager viewPager;
-
   @BindView(R.id.tab_layout)
   PersianTabLayout tabLayout;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     setRetainInstance(true);
+    setHasOptionsMenu(true);
     View view = inflater.inflate(R.layout.fragment_main, container, false);
     ButterKnife.bind(this, view);
 
+    assert toolbar != null;
+    if (toolbar.getLayoutDirection() == View.LAYOUT_DIRECTION_LTR) {
+      toolbar.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+    }
     init();
-
-    /*swipeRefreshLayout.setColorSchemeResources(R.color.lineRed,
-      R.color.lineBlue,
-      R.color.lineOrange,
-      R.color.linePurple);*/
+    ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+    ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
 
     Typeface mTypeface = Typeface.createFromAsset(getActivity().getAssets(), "fonts/AGhasem.ttf");
     logo.setTypeface(mTypeface);
@@ -55,6 +60,18 @@ public class MainFragment extends Fragment {
 
     return view;
   }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    int id = item.getItemId();
+    if (id == R.id.shareToFriends) {
+      ShareUtil.intentMessage(getActivity(), "بوکمارک\r\n مرجع نقل‌قول‌های فارسی\r\n https://novler.com/landing/bookmark");
+      return true;
+    }
+
+    return super.onOptionsItemSelected(item);
+  }
+
 
   public void init() {
     if (((AppCompatActivity) getActivity()).getSupportActionBar() != null) {
@@ -71,7 +88,7 @@ public class MainFragment extends Fragment {
     PagerAdapter adapter = buildAdapter();
     viewPager.setAdapter(adapter);
     viewPager.setCurrentItem(tabLayout.getTabCount(), false);
-    viewPager.setOffscreenPageLimit(4);
+    viewPager.setOffscreenPageLimit(1);
     viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
       @Override
@@ -90,6 +107,12 @@ public class MainFragment extends Fragment {
       }
     });
 
+  }
+
+  @Override
+  public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    super.onCreateOptionsMenu(menu, inflater);
+    inflater.inflate(R.menu.menu_main, menu);
   }
 
   private PagerAdapter buildAdapter() {

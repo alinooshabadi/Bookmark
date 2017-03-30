@@ -2,6 +2,8 @@ package com.novler.quotes.ui.quote;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.Pair;
@@ -11,8 +13,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.GravityEnum;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.novler.quotes.BookmarkApplication;
 import com.novler.quotes.ExportInstagramActivity;
 import com.novler.quotes.R;
@@ -20,8 +25,10 @@ import com.novler.quotes.models.QuoteListData;
 import com.novler.quotes.models.ResponseData;
 import com.novler.quotes.ui.home.BaseView;
 import com.novler.quotes.ui.novel.NovelActivity;
+import com.novler.quotes.util.FontUtil;
 import com.novler.quotes.util.ShareUtil;
 import com.novler.quotes.util.Utils;
+import com.novler.quotes.util.network.NetworkUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,13 +37,13 @@ import butterknife.OnClick;
 public class BaseQuotesFragment extends Fragment implements BaseView {
 
   @BindView(R.id.reload)
-  TextView tvReload;
+  LinearLayout tvReload;
   @BindView(R.id.list)
   RecyclerView list;
   @BindView(R.id.swipeRefreshLayout)
   SwipeRefreshLayout swipeRefreshLayout;
 
-  @OnClick(R.id.reload)
+  @OnClick(R.id.reloadButton)
   public void reloadList() {
     getItems();
   }
@@ -61,7 +68,33 @@ public class BaseQuotesFragment extends Fragment implements BaseView {
   }
 
   public void getItems() {
-
+    if (NetworkUtil.getConnectivityStatus(getContext()) == NetworkUtil.TYPE_NOT_CONNECTED) {
+      new MaterialDialog.Builder(getContext())
+        .title("ارتباط با اینترنت برقرار نیست")
+        .titleGravity(GravityEnum.END)
+        .contentGravity(GravityEnum.END)
+        .buttonsGravity(GravityEnum.END)
+        .typeface(FontUtil.getTypeface(getContext(), FontUtil.FontType.IranSansLight), FontUtil.getTypeface(getContext(), FontUtil.FontType.IranSansLight))
+        .content("برای دریافت آخرین نقل‌قول‌ها، به اینترنت متصل شوید.")
+        .positiveText("اینترنت WIFI")
+        .negativeText("اینترنت موبایل")
+        .neutralText("بیخیال")
+        .onPositive(new MaterialDialog.SingleButtonCallback() {
+          @Override
+          public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+            startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+          }
+        })
+        .onNegative(new MaterialDialog.SingleButtonCallback() {
+          @Override
+          public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.setClassName("com.android.phone", "com.android.phone.NetworkSetting");
+            startActivity(intent);
+          }
+        })
+        .show();
+    }
   }
 
   @Override

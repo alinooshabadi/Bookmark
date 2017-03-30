@@ -2,10 +2,10 @@ package com.novler.quotes.ui.quote;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.ViewGroup;
 
-public class PagerAdapter extends FragmentPagerAdapter {
+public class PagerAdapter extends FragmentStatePagerAdapter {
   private int mNumOfTabs;
 
   public PagerAdapter(FragmentManager mgr, int NumOfTabs) {

@@ -2,6 +2,7 @@ package com.novler.quotes.networking;
 
 import com.novler.quotes.BaseApp;
 import com.novler.quotes.BuildConfig;
+import com.novler.quotes.util.network.NetworkUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,7 +44,7 @@ public class NetworkModule {
         public okhttp3.Response intercept(Chain chain) throws IOException {
           Request request = chain.request();
           // Customize the request
-          if (BaseApp.mNetworkStatus!= "Not connected to Internet") {
+          if (BaseApp.mNetworkStatus != NetworkUtil.TYPE_NOT_CONNECTED) {
             request = request.newBuilder()
               .header("Content-Type", "application/json")
               .removeHeader("Pragma")
@@ -58,10 +59,10 @@ public class NetworkModule {
           }
 
           okhttp3.Response response = chain.proceed(request);
-          if (response.cacheControl() != null) {
+          if (response.cacheControl() != null && response.code() == 200) {
             response.cacheResponse();
           } else if (response.networkResponse() != null) {
-            response.cacheResponse();
+            response.networkResponse();
           }
 
           // Customize or return the response

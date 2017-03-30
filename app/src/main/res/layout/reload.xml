@@ -1,17 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
-<TextView android:id="@+id/reload"
-  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:fancy="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:layout_gravity="center_horizontal"
-  android:drawableTop="@drawable/ic_disconnected"
-  android:gravity="center"
-  android:orientation="vertical"
-  android:text="@string/no_internet"
   android:layout_centerInParent="true"
-  android:textAlignment="center"
-  android:textColor="@color/primary_text"
-  android:textSize="18sp" />
+  android:orientation="vertical">
+
+  <ImageView
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:layout_gravity="center"
+    android:contentDescription="@null"
+    android:src="@drawable/ic_disconnected"
+    android:tint="@color/colorPrimaryDark" />
+
+  <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:text="@string/no_internet"
+    android:textAlignment="center"
+    android:textColor="@color/colorPrimaryDark"
+    android:textSize="18sp" />
+
+  <com.novler.quotes.util.customLayout.FancyButton
+    android:id="@+id/reloadButton"
+    android:layout_width="fill_parent"
+    android:layout_height="0dp"
+    android:layout_marginEnd="100dp"
+    android:layout_marginStart="100dp"
+    android:layout_marginTop="20dp"
+    android:layout_weight="2"
+    android:paddingBottom="10dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="10dp"
+    fancy:fb_borderColor="#FFFFFF"
+    fancy:fb_borderWidth="1dp"
+    fancy:fb_defaultColor="@color/flatGreen"
+    fancy:fb_focusColor="@color/flatGreenHighlight"
+    fancy:fb_fontIconResource="&#xf021;"
+    fancy:fb_fontIconSize="18sp"
+    fancy:fb_iconPaddingLeft="4dp"
+    fancy:fb_iconPosition="right"
+    fancy:fb_radius="10dp"
+    fancy:fb_text="تلاش مجدد"
+    fancy:fb_textColor="#FFFFFF"
+    fancy:fb_textFont="IRANSansMobile.ttf"
+    fancy:fb_textSize="14sp" />
 
 
+</LinearLayout>

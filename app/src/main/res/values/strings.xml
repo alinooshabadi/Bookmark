@@ -5,4 +5,10 @@
   <string name="text_authors">نویسنده‌ها</string>
   <string name="title_activity_novel">Bookmark</string>
   <string name="no_internet">خطا در اتصال به اینترنت</string>
+  <string name="shareToFriends">معرفی به دوستان</string>
+  <string name="done">خوبه همین</string>
+  <string name="cancel">بیخیال</string>
+  <string name="back">بازگشت</string>
+  <string name="more">بیشتر</string>
+  <string name="select_background_color">انتخاب رنگ پس‌زمینه</string>
 </resources>

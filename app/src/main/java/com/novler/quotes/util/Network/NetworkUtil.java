@@ -6,9 +6,9 @@ import android.net.NetworkInfo;
 
 public class NetworkUtil {
 
-  private static int TYPE_WIFI = 1;
-  private static int TYPE_MOBILE = 2;
-  private static int TYPE_NOT_CONNECTED = 0;
+  public static int TYPE_WIFI = 1;
+  public static int TYPE_MOBILE = 2;
+  public static int TYPE_NOT_CONNECTED = 0;
 
 
   public static int getConnectivityStatus(Context context) {
@@ -30,11 +30,11 @@ public class NetworkUtil {
     int conn = NetworkUtil.getConnectivityStatus(context);
     String status = null;
     if (conn == NetworkUtil.TYPE_WIFI) {
-      status = "Wifi enabled";
+      status = "اتصال به wifi";
     } else if (conn == NetworkUtil.TYPE_MOBILE) {
-      status = "Mobile data enabled";
+      status = "اتصال با شبکه دیتا";
     } else if (conn == NetworkUtil.TYPE_NOT_CONNECTED) {
-      status = "Not connected to Internet";
+      status = "ارتباط با اینترنت قطع شد";
     }
     return status;
   }

@@ -11,7 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 
 import com.novler.quotes.R;
 import com.novler.quotes.models.NovelData;
@@ -26,10 +26,9 @@ import butterknife.OnClick;
 
 import static io.fabric.sdk.android.services.concurrency.AsyncTask.init;
 
-
 public class FeaturedNovelsFragment extends Fragment implements BaseView {
   @BindView(R.id.reload)
-  TextView tvReload;
+  LinearLayout tvReload;
   @BindView(R.id.novels_list)
   RecyclerView list;
   @BindView(R.id.swipeRefreshLayout)
@@ -64,13 +63,13 @@ public class FeaturedNovelsFragment extends Fragment implements BaseView {
   }
 
   void getItems() {
-    if (presenter == null) {
+    if (presenter == null)
       presenter = new HomePresenter(((HomeActivity) getActivity()).service, this);
-      presenter.getNovelFeaturedList();
-    }
+    presenter.getNovelFeaturedList();
+
   }
 
-  @OnClick(R.id.reload)
+  @OnClick(R.id.reloadButton)
   public void reloadList() {
     getItems();
   }

@@ -3,14 +3,19 @@ package com.novler.quotes;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.Settings;
+import android.support.annotation.ColorInt;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
@@ -21,6 +26,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.GravityEnum;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.novler.quotes.util.FontUtil;
 import com.novler.quotes.util.ShareUtil;
 import com.novler.quotes.util.Utils;
@@ -39,7 +48,7 @@ import butterknife.OnClick;
 import static com.novler.quotes.R.id.copyToClipboard;
 import static com.novler.quotes.R.id.frame;
 
-public class ExportInstagramActivity extends BaseApp {
+public class ExportInstagramActivity extends BaseApp implements ColorChooserDialog.ColorCallback {
 
   String mText, mAuthor, mNovel;
   float mTextSize = 14;
@@ -74,7 +83,26 @@ public class ExportInstagramActivity extends BaseApp {
       // Should we show an explanation?
       if (ActivityCompat.shouldShowRequestPermissionRationale(ExportInstagramActivity.this,
         android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-
+        new MaterialDialog.Builder(this)
+          .title("عدم دسترسی")
+          .titleGravity(GravityEnum.END)
+          .contentGravity(GravityEnum.END)
+          .buttonsGravity(GravityEnum.END)
+          .typeface(FontUtil.getTypeface(getApplicationContext(), FontUtil.FontType.IranSansLight), FontUtil.getTypeface(getApplicationContext(), FontUtil.FontType.IranSansLight))
+          .content("به دلیل عدم تایید دسترسی، این قسمت از برنامه قادر به اجرا نمی‌باشد. می‌توانید مجددا از طریق تنظیمات، دسترسی این قسمت را به برنامه بدهید.")
+          .positiveText("تنظیمات اپلیکیشن")
+          .neutralText("بیخیال")
+          .onPositive(new MaterialDialog.SingleButtonCallback() {
+            @Override
+            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+              Intent intent = new Intent();
+              intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+              Uri uri = Uri.fromParts("package", getPackageName(), null);
+              intent.setData(uri);
+              startActivity(intent);
+            }
+          })
+          .show();
         // Show an explanation to the user *asynchronously* -- don't block
         // this thread waiting for the user's response! After the user
         // sees the explanation, try again to request the permission.
@@ -143,6 +171,7 @@ public class ExportInstagramActivity extends BaseApp {
 
   @OnClick(copyToClipboard)
   void copyToClipboard() {
+
     String copiedText = Utils.clearText(mText
       + "\r\n" + "\r\n"
       + mNovel
@@ -160,7 +189,7 @@ public class ExportInstagramActivity extends BaseApp {
   @OnClick(R.id.btn_bigger)
   void biggerText() {
     btnSmallerText.setEnabled(true);
-    if (mTextSize < 20) {
+    if (mTextSize < 24) {
       mTextSize = mTextSize + 1;
       tvText.setTextSize(TypedValue.COMPLEX_UNIT_SP, mTextSize);
     } else
@@ -175,6 +204,22 @@ public class ExportInstagramActivity extends BaseApp {
       tvText.setTextSize(TypedValue.COMPLEX_UNIT_SP, mTextSize);
     } else
       btnSmallerText.setEnabled(false);
+  }
+
+  @OnClick(R.id.pallet_circle)
+  void openPallet() {
+    new ColorChooserDialog.Builder(this, R.string.select_background_color)
+      //.typeface(FontUtil.getTypeface(getContext(), FontUtil.FontType.IranSansLight),FontUtil.getTypeface(getContext(), FontUtil.FontType.IranSansLight))
+      .titleSub(R.string.select_background_color)  // title of dialog when viewing shades of a color
+      .presetsButton(R.string.back)
+      .accentMode(true)  // when true, will display accent palette instead of primary palette
+      .doneButton(R.string.done)  // changes label of the done button
+      .cancelButton(R.string.cancel)  // changes label of the cancel button
+      .backButton(R.string.back)  // changes label of the back button
+      .customButton(R.string.more)
+      .dynamicButtonColor(true)  // defaults to true, false will disable changing action buttons' color to currently selected color
+      .show();
+
   }
 
   private Bitmap getBitmapFromView(View view) {
@@ -214,16 +259,16 @@ public class ExportInstagramActivity extends BaseApp {
 
     String alpha = "#FF";
     colors.add(alpha + "d32f2f");
-    colors.add(alpha + "C2185B");
-    colors.add(alpha + "7B1FA2");
+    //colors.add(alpha + "C2185B");
+    //colors.add(alpha + "7B1FA2");
     colors.add(alpha + "512DA8");
     colors.add(alpha + "1976D2");
     colors.add(alpha + "00796B");
-    colors.add(alpha + "388E3C");
-    colors.add(alpha + "FF8F00");
+    //colors.add(alpha + "388E3C");
+    //colors.add(alpha + "FF8F00");
     colors.add(alpha + "E64A19");
-    colors.add(alpha + "5D4037");
-    colors.add(alpha + "37474F");
+    //colors.add(alpha + "5D4037");
+    //colors.add(alpha + "37474F");
     int index = new Random().nextInt(colors.size());
     frmMain.setBackgroundColor(Color.parseColor(colors.get(index)));
 
@@ -232,9 +277,9 @@ public class ExportInstagramActivity extends BaseApp {
 
   void setPalletControls() {
     LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams
-      (Utils.dpToPx(getApplicationContext(), 18), Utils.dpToPx(getApplicationContext(), 18));
-    lp.setMargins(Utils.dpToPx(getApplicationContext(), 1), Utils.dpToPx(getApplicationContext(), 1),
-      Utils.dpToPx(getApplicationContext(), 1), Utils.dpToPx(getApplicationContext(), 1));
+      (Utils.dpToPx(getApplicationContext(), 28), Utils.dpToPx(getApplicationContext(), 28));
+    lp.setMargins(Utils.dpToPx(getApplicationContext(), 2), Utils.dpToPx(getApplicationContext(), 2),
+      Utils.dpToPx(getApplicationContext(), 2), Utils.dpToPx(getApplicationContext(), 2));
 
     for (int i = 0; i < colors.size(); i = i + 1) {
       FancyButton btnColored = new FancyButton(this);
@@ -280,6 +325,15 @@ public class ExportInstagramActivity extends BaseApp {
       mNovel = b.getString("title");
       mAuthor = b.getString("author");
     }
+
+  }
+
+  @Override
+  public void onColorSelection(@NonNull ColorChooserDialog colorChooserDialog, @ColorInt int color) {
+    frmMain.setBackgroundColor(color);
+  }
+
+  @Override public void onColorChooserDismissed(@NonNull ColorChooserDialog colorChooserDialog) {
 
   }
 }
