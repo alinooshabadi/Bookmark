@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:id="@+id/parentLayout"
   xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:card_view="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   android:background="@color/white"
@@ -11,19 +10,20 @@
     android:id="@+id/textContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-  <TextView
-    android:id="@+id/text"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/user"
-    android:lineSpacingExtra="12sp"
-    android:paddingBottom="10dp"
-    android:paddingLeft="30dp"
-    android:paddingRight="30dp"
-    android:paddingTop="20dp"
-    android:text="\پراید سفید گل‌کاری شده بوق بوق‌کنان از جلو مغازه رد می‌شود. از عروس فقط لباس سفیدش را می‌بینم. حتما شبیه همه‌ی عروس‌های دیگری است که تا‌به‌حال دیده‌ام: زشت و تکراری. حتا می‌توانم آهنگ‌هایی را که برای رقص چاقوی امشب انتخاب می‌کنند حدس بزنم. بعد از نیم قرن، هنوز باباکرم با یک سروگردن اختلاف از بقیه‌ی آهنگ‌های‌شان بهتر است. یک مراسم تکراری و کسل‌کننده که با قایون دست، خانوما رقص، حالا برعکسشروع می‌شود و با آقایون، خانوما، بفرمایید شام تمام می‌شود\"
-    android:textColor="#171818"
-    android:textSize="13sp" />
+
+    <TextView
+      android:id="@+id/text"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/user"
+      android:lineSpacingExtra="12sp"
+      android:paddingBottom="10dp"
+      android:paddingLeft="30dp"
+      android:paddingRight="30dp"
+      android:paddingTop="20dp"
+      android:text="\پراید سفید گل‌کاری شده بوق بوق‌کنان از جلو مغازه رد می‌شود. از عروس فقط لباس سفیدش را می‌بینم. حتما شبیه همه‌ی عروس‌های دیگری است که تا‌به‌حال دیده‌ام: زشت و تکراری. حتا می‌توانم آهنگ‌هایی را که برای رقص چاقوی امشب انتخاب می‌کنند حدس بزنم. بعد از نیم قرن، هنوز باباکرم با یک سروگردن اختلاف از بقیه‌ی آهنگ‌های‌شان بهتر است. یک مراسم تکراری و کسل‌کننده که با قایون دست، خانوما رقص، حالا برعکسشروع می‌شود و با آقایون، خانوما، بفرمایید شام تمام می‌شود\"
+      android:textColor="#171818"
+      android:textSize="13sp" />
   </LinearLayout>
 
 
@@ -104,10 +104,10 @@
     <ImageView
       android:id="@+id/shareInsta"
       android:layout_width="20dp"
-      android:layout_toStartOf="@id/shareTelegram"
       android:layout_height="20dp"
       android:layout_gravity="center_vertical"
       android:layout_marginStart="8dp"
+      android:layout_toStartOf="@id/shareTelegram"
 
       android:contentDescription="@null"
       android:src="@drawable/ic_instagram"

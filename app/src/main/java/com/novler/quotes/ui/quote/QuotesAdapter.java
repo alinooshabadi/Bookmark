@@ -7,8 +7,6 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,6 +17,7 @@ import com.novler.quotes.R;
 import com.novler.quotes.models.QuoteListData;
 import com.novler.quotes.ui.novel.NovelActivity;
 import com.novler.quotes.util.Utils;
+import com.novler.quotes.util.customLayout.RecyclerViewAnimator;
 
 import java.util.List;
 
@@ -31,12 +30,21 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.ViewHolder
   private List<QuoteListData> data;
   private Context context;
   private Activity activity;
+  private RecyclerViewAnimator mAnimator;
 
-  public QuotesAdapter(Activity activity, Context context, List<QuoteListData> data, OnItemClickListener listener) {
+/*  public QuotesAdapter(Activity activity, Context context, List<QuoteListData> data, OnItemClickListener listener) {
     this.data = data;
     this.activity = activity;
     this.listener = listener;
     this.context = context;
+  }*/
+
+  public QuotesAdapter(Activity activity, RecyclerView recycler, Context context, List<QuoteListData> data, OnItemClickListener listener) {
+    this.data = data;
+    this.activity = activity;
+    this.listener = listener;
+    this.context = context;
+    mAnimator = new RecyclerViewAnimator(recycler);
   }
 
 
@@ -44,6 +52,7 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.ViewHolder
   public QuotesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_quote, null);
     view.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT));
+    mAnimator.onCreateViewHolder(view);
     return new ViewHolder(view);
   }
 
@@ -55,12 +64,12 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.ViewHolder
 
   @Override
   public void onBindViewHolder(QuotesAdapter.ViewHolder holder, int position) {
-    int lastPosition = -1;
+   /* int lastPosition = -1;
     Animation animation = AnimationUtils.loadAnimation(context,
       (position > lastPosition) ? R.anim.up_from_bottom
         : R.anim.down_from_top);
     holder.itemView.startAnimation(animation);
-    lastPosition = position;
+    lastPosition = position;*/
 
     if (activity.getClass() == NovelActivity.class)
       holder.titleCoverContainer.setVisibility(View.GONE);
@@ -98,6 +107,9 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.ViewHolder
       .diskCacheStrategy(DiskCacheStrategy.SOURCE)
       .skipMemoryCache(true)
       .into(holder.cover);
+
+    mAnimator.onBindViewHolder(holder.itemView, position);
+
   }
 
 

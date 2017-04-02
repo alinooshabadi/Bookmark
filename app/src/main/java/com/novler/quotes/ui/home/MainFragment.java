@@ -65,7 +65,7 @@ public class MainFragment extends Fragment {
   public boolean onOptionsItemSelected(MenuItem item) {
     int id = item.getItemId();
     if (id == R.id.shareToFriends) {
-      ShareUtil.intentMessage(getActivity(), "بوکمارک\r\n مرجع نقل‌قول‌های فارسی\r\n https://novler.com/landing/bookmark");
+      ShareUtil.intentMessage(getActivity(), "بوکمارک\r\n مرجع نقل\u200Cقول\u200Cها از شاهکارهای ادبیات ایران و جهان\r\n مشاهیر ادبیات را بشناسید، بخوانید و با دوستان خود اشتراک بگذارید.\r\n https://novler.com/landing/bookmark");
       return true;
     }
 

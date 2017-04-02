@@ -1,8 +1,6 @@
 package com.novler.quotes.networking;
 
-import com.novler.quotes.BaseApp;
 import com.novler.quotes.BuildConfig;
-import com.novler.quotes.util.network.NetworkUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -44,29 +42,33 @@ public class NetworkModule {
         public okhttp3.Response intercept(Chain chain) throws IOException {
           Request request = chain.request();
           // Customize the request
-          if (BaseApp.mNetworkStatus != NetworkUtil.TYPE_NOT_CONNECTED) {
+          //if (BaseApp.mNetworkStatus != NetworkUtil.TYPE_NOT_CONNECTED) {
             request = request.newBuilder()
               .header("Content-Type", "application/json")
               .removeHeader("Pragma")
               .header("Cache-Control", String.format("max-age=%d", BuildConfig.CACHETIME))
               .build();
-          } else {
+          /*} else {
             request = request.newBuilder()
               .header("Content-Type", "application/json")
               .removeHeader("Pragma")
               .header("Cache-Control", "public, only-if-cached, max-stale=" + 60 * 60 * 24 * 7)
               .build();
-          }
+          }*/
 
-          okhttp3.Response response = chain.proceed(request);
-          if (response.cacheControl() != null && response.code() == 200) {
-            response.cacheResponse();
-          } else if (response.networkResponse() != null) {
-            response.networkResponse();
-          }
+          try {
+            okhttp3.Response response = chain.proceed(request);
+            if (response.cacheControl() != null && response.code() == 200) {
+              response.cacheResponse();
+            } else if (response.networkResponse() != null) {
+              response.networkResponse();
+            }
 
-          // Customize or return the response
-          return response;
+            // Customize or return the response
+            return response;
+          } catch (Exception ex) {
+            return null;
+          }
         }
       })
       .cache(cache)

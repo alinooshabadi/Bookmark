@@ -213,7 +213,7 @@ public class NovelActivity extends BaseApp implements BaseView {
   }
 
   @Override public void getListSuccess(ResponseData listResponse) {
-    QuotesAdapter adapter = new QuotesAdapter(this, this.getApplicationContext(), listResponse.getNovel().getQuotes(),
+    QuotesAdapter adapter = new QuotesAdapter(this, mList, this.getApplicationContext(), listResponse.getNovel().getQuotes(),
       new QuotesAdapter.OnItemClickListener() {
         @Override
         public void onClick(QuoteListData Item, View view) {

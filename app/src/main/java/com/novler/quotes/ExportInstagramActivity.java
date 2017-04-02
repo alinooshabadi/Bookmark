@@ -29,6 +29,7 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.Theme;
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.novler.quotes.util.FontUtil;
 import com.novler.quotes.util.ShareUtil;
@@ -217,6 +218,7 @@ public class ExportInstagramActivity extends BaseApp implements ColorChooserDial
       .cancelButton(R.string.cancel)  // changes label of the cancel button
       .backButton(R.string.back)  // changes label of the back button
       .customButton(R.string.more)
+      .theme(Theme.LIGHT)
       .dynamicButtonColor(true)  // defaults to true, false will disable changing action buttons' color to currently selected color
       .show();
 
@@ -258,15 +260,15 @@ public class ExportInstagramActivity extends BaseApp implements ColorChooserDial
     tvAuthor.setTypeface(FontUtil.getTypeface(getApplicationContext(), FontUtil.FontType.IranSansBold));
 
     String alpha = "#FF";
-    colors.add(alpha + "d32f2f");
+    colors.add(alpha + "16a085");
     //colors.add(alpha + "C2185B");
     //colors.add(alpha + "7B1FA2");
-    colors.add(alpha + "512DA8");
-    colors.add(alpha + "1976D2");
-    colors.add(alpha + "00796B");
+    colors.add(alpha + "2980b9");
+    colors.add(alpha + "8e44ad");
+    colors.add(alpha + "c0392b");
     //colors.add(alpha + "388E3C");
     //colors.add(alpha + "FF8F00");
-    colors.add(alpha + "E64A19");
+    colors.add(alpha + "2c3e50");
     //colors.add(alpha + "5D4037");
     //colors.add(alpha + "37474F");
     int index = new Random().nextInt(colors.size());

@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.Theme;
 import com.novler.quotes.BookmarkApplication;
 import com.novler.quotes.ExportInstagramActivity;
 import com.novler.quotes.R;
@@ -74,6 +75,7 @@ public class BaseQuotesFragment extends Fragment implements BaseView {
         .titleGravity(GravityEnum.END)
         .contentGravity(GravityEnum.END)
         .buttonsGravity(GravityEnum.END)
+        .theme(Theme.LIGHT)
         .typeface(FontUtil.getTypeface(getContext(), FontUtil.FontType.IranSansLight), FontUtil.getTypeface(getContext(), FontUtil.FontType.IranSansLight))
         .content("برای دریافت آخرین نقل‌قول‌ها، به اینترنت متصل شوید.")
         .positiveText("اینترنت WIFI")
@@ -117,7 +119,7 @@ public class BaseQuotesFragment extends Fragment implements BaseView {
   @Override
   public void getListSuccess(ResponseData listResponse) {
     final BookmarkApplication mApp = ((BookmarkApplication) getActivity().getApplicationContext());
-    QuotesAdapter adapter = new QuotesAdapter(getActivity(), getActivity().getApplicationContext(), listResponse.getQuotes(),
+    QuotesAdapter adapter = new QuotesAdapter(getActivity(), list, getActivity().getApplicationContext(), listResponse.getQuotes(),
       new QuotesAdapter.OnItemClickListener() {
         @Override
         public void onClick(QuoteListData Item, View view) {

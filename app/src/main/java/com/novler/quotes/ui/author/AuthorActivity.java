@@ -198,7 +198,7 @@ public class AuthorActivity extends BaseApp implements BaseView {
   }
 
   @Override public void getListSuccess(ResponseData listResponse) {
-    QuotesAdapter adapter = new QuotesAdapter(this, this.getApplicationContext(), listResponse.getAuthor().getQuotes(),
+    QuotesAdapter adapter = new QuotesAdapter(this, mList, this.getApplicationContext(), listResponse.getAuthor().getQuotes(),
       new QuotesAdapter.OnItemClickListener() {
         @Override
         public void onClick(QuoteListData Item, View view) {
