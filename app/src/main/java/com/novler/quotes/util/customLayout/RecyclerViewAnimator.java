@@ -18,7 +18,7 @@ public class RecyclerViewAnimator {
 
   private static final int SCROLL_TENSION = 300;
 
-  private static final int SCROLL_FRICTION = 30;
+  private static final int SCROLL_FRICTION = 40;
 
   private int mHeight;
   private RecyclerView mRecyclerView;
